@@ -2,12 +2,13 @@ package model;
 
 public enum TipoPagamento implements Taxa {
     
+    // Não tenho certeza se poderemos usar essa estrutura no trabalho
     DINHEIRO {
         @Override
         public double calcularParcela(double valor, int numParcelas) {
             double subtotal = valor/numParcelas, total = 0;
             double parcelaAnterior = 0;
-            //Corrigir taxa de juros
+            // adicionar validação de parcelas
             for(int i = 0; i < numParcelas; i++){
                 parcelaAnterior = subtotal * 1.02;
                 subtotal = parcelaAnterior;
@@ -27,7 +28,7 @@ public enum TipoPagamento implements Taxa {
         public double calcularParcela(double valor, int numParcelas) {
             double subtotal = valor/numParcelas, total = 0;
             double parcelaAnterior = 0;
-            //Corrigir taxa de juros
+            // adicionar validação de parcelas
             for(int i = 0; i < numParcelas; i++){
                 parcelaAnterior = subtotal * 1.06;
                 subtotal = parcelaAnterior;
@@ -47,7 +48,7 @@ public enum TipoPagamento implements Taxa {
         public double calcularParcela(double valor, int numParcelas) {
             double subtotal = valor/numParcelas, total = 0;
             double parcelaAnterior = 0;
-            //Corrigir taxa de juros
+            // adicionar validação de parcelas
             for(int i = 0; i < numParcelas; i++){
                 parcelaAnterior = subtotal * 1.02;
                 subtotal = parcelaAnterior;
@@ -66,7 +67,7 @@ public enum TipoPagamento implements Taxa {
         public double calcularParcela(double valor, int numParcelas) {
             double subtotal = valor/numParcelas, total = 0;
             double parcelaAnterior = 0;
-            //Corrigir taxa de juros
+            // adicionar validação de parcelas
             for(int i = 0; i < numParcelas; i++){
                 parcelaAnterior = subtotal * 1.02;
                 subtotal = parcelaAnterior;
