@@ -6,12 +6,18 @@ public class Municipio {
     private String nome;
     private String estado;
     private String pais;
+    
+    private static int ultimoId = 1;
 
     public Municipio() {
+        this.id = ultimoId;
+        ultimoId++;
     }
 
-    public Municipio(int id, String nome, String estado, String pais) {
-        this.id = id;
+    public Municipio(String nome, String estado, String pais) {
+        this.id = ultimoId;
+        ultimoId++;
+        
         this.nome = nome;
         this.estado = estado;
         this.pais = pais;
@@ -48,7 +54,27 @@ public class Municipio {
     public void setPais(String pais) {
         this.pais = pais;
     }
-    
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Municipio other = (Municipio) obj;
+        return this.id == other.id;
+    }
     
 }
