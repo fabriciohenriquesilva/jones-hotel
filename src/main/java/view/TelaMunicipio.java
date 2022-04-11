@@ -94,6 +94,11 @@ public class TelaMunicipio extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableMunicipios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMunicipiosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableMunicipios);
 
         btnConsultar.setText("Consultar");
@@ -133,11 +138,8 @@ public class TelaMunicipio extends javax.swing.JInternalFrame {
                     .addGroup(panelLayout.createSequentialGroup()
                         .addGap(158, 158, 158)
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(tfdEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfdPais, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tfdEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfdPais, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelLayout.createSequentialGroup()
                                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblPais, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -231,6 +233,20 @@ public class TelaMunicipio extends javax.swing.JInternalFrame {
         municipioController.atualizarTabela();
         limparCampos();
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void tableMunicipiosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMunicipiosMouseClicked
+        if(evt.getClickCount() == 2){
+            Integer id = (Integer) tableMunicipios.getModel().getValueAt(tableMunicipios.getSelectedRow(), 0);
+            String nome = (String) tableMunicipios.getModel().getValueAt(tableMunicipios.getSelectedRow(), 1);
+            String estado = (String) tableMunicipios.getModel().getValueAt(tableMunicipios.getSelectedRow(), 2);
+            String pais = (String) tableMunicipios.getModel().getValueAt(tableMunicipios.getSelectedRow(), 3);
+            
+            tfdId.setText(String.valueOf(id));
+            tfdNome.setText(nome);
+            tfdEstado.setText(estado);
+            tfdPais.setText(pais);
+        }
+    }//GEN-LAST:event_tableMunicipiosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

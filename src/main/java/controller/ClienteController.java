@@ -1,16 +1,17 @@
 package controller;
 
 import dao.ClienteDAO;
-import java.awt.Component;
+import java.util.List;
 import java.util.NoSuchElementException;
-import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import model.Cliente;
+import model.PessoaFisica;
+import model.PessoaJuridica;
 import util.MensagemUtil;
 import view.TelaCliente;
 
 public class ClienteController {
-    
-    private Cliente cliente;
+
     private final TelaCliente telaCliente;
     private final ClienteDAO clienteDao;
 
@@ -20,106 +21,128 @@ public class ClienteController {
     }
 
     public boolean incluir() {
-        
-        if(camposEmBranco()){
+
+        if (camposEmBranco()) {
             MensagemUtil.addAviso(telaCliente, "Preencha todos os campos para cadastrar um cliente!");
             return false;
         }
-        
-        String cpf = telaCliente.getTfdCpf();
-        String nome = telaCliente.getTfdNome();
-        String identidade = telaCliente.getTfdIdentidade();
-        String salario = telaCliente.getTfdSalario();
 
-        try {
-            float salarioFloat = Float.parseFloat(salario);
+        String nome = telaCliente.getTfdNome().getText();
+        String cpfCnpj = telaCliente.getTfdCpfCnpj().getText();
 
-            cliente = new Cliente(cpf, nome, salarioFloat, identidade);
-            System.out.println("Incluir - Controller: " + cliente);
+        boolean ePessoaFisica = telaCliente.getRbtPessoaFisica().isSelected();
+        boolean ePessoaJuridica = telaCliente.getRbtPessoaJuridica().isSelected();
 
-            if (clienteDao.incluir(cliente)) {
-                MensagemUtil.addInfo(telaCliente, "Funcionário cadastrado com sucesso!");
+        if (ePessoaFisica) {
+            Cliente clientePf = new PessoaFisica(cpfCnpj, nome);
+            if (clienteDao.incluir(clientePf)) {
+                MensagemUtil.addInfo(telaCliente, "Cliente cadastrado com sucesso!");
                 return true;
-            } else {
-                MensagemUtil.addAviso(telaCliente, "Já existe um funcionário com o CPF informado!");
             }
-            
-        } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
-            MensagemUtil.addErro(telaCliente, "O campo de salário deve conter apenas números");
+
+        } else if (ePessoaJuridica) {
+            Cliente clientePj = new PessoaFisica(cpfCnpj, nome);
+            if (clienteDao.incluir(clientePj)) {
+                MensagemUtil.addInfo(telaCliente, "Cliente cadastrado com sucesso!");
+                return true;
+            }
         }
         return false;
     }
 
-    public boolean consultar(String cpfBuscado) {
-
-        if("".equals(cpfBuscado) || cpfBuscado == null){
-            MensagemUtil.addAviso(telaCliente, "Por favor, informe um CPF para realizar a busca!");
+    public boolean consultar() {
+        String textoId = telaCliente.getTfdId().getText();
+        if (textoId.isEmpty()) {
+            MensagemUtil.addAviso(telaCliente, "Por favor, informe um ID para realizar a busca!");
             return false;
-        }
-
-        try {
-            cliente = clienteDao.consultar(cpfBuscado);
-
-            telaCliente.setTfdCpf(cliente.getCpf());
-            telaCliente.setTfdNome(cliente.getNome());
-            telaCliente.setTfdIdentidade(cliente.getIdentidade());
-            float salario = cliente.getSalario();
-            telaCliente.setTfdSalario(String.valueOf(salario));
-            
-            System.out.println(cliente);
-        } catch (NoSuchElementException e) {
-            MensagemUtil.addAviso(telaCliente, "Não foi encontrado funcionário com o CPF informado!");
-            return false;
-        }
-        return true;
-    }
-    
-    public boolean alterar(){
-        
-        if(camposEmBranco()){
-            MensagemUtil.addAviso(telaCliente, "Preencha todos os campos para alterar um cliente!");
-            return false;
-        }
-        
-        try {
-            String cpf = telaCliente.getTfdCpf();
-            String nome = telaCliente.getTfdNome();
-            String identidade = telaCliente.getTfdIdentidade();
-            String salario = telaCliente.getTfdSalario();
-            
+        } else {
             try {
-                float salarioFloat = Float.parseFloat(salario);
-                
-                cliente = new Cliente(cpf, nome, salarioFloat, identidade);
-                
-                cliente.setNome(nome);
-                cliente.setIdentidade(identidade);
-                cliente.setSalario(salarioFloat);
-                
-                clienteDao.alterar(cliente);
-                
-                return true;
-                
-            } catch (NumberFormatException e) {
-                System.out.println(e.getMessage());
-                MensagemUtil.addErro(telaCliente, "O campo de salário deve conter apenas números");
-            }
-            
-        } catch (NoSuchElementException e){
-            MensagemUtil.addAviso(telaCliente, "Não foi encontrado funcionário com o CPF informado!");
-        }
-        return false;
-    }
-    
-    private boolean camposEmBranco(){
-        for (Component c : telaCliente.getPanel().getComponents()) {
-            if (c instanceof JTextField) {
-                if (((JTextField) c).getText().isBlank()) {
-                    return true;
+                int id = Integer.parseInt(textoId);
+
+                try {
+                    Cliente cliente = clienteDao.consultar(id);
+                    
+                    if(cliente instanceof PessoaJuridica){
+                        telaCliente.getTfdCpfCnpj().setText(((PessoaJuridica) cliente).getCnpj());
+                    }
+                    if(cliente instanceof PessoaFisica){
+                        telaCliente.getTfdCpfCnpj().setText(((PessoaFisica) cliente).getCpf());
+                    }
+                    
+                    telaCliente.getTfdNome().setText(cliente.getNome());
+                    telaCliente.getTfdTelFixo().setText(cliente.getTelefoneFixo());
+                    telaCliente.getTfdTelCelular().setText(cliente.getTelefoneCelular());
+                    telaCliente.getTfdTelComercial().setText(cliente.getTelefoneComercial());
+                    
+                } catch (NoSuchElementException e) {
+                    MensagemUtil.addAviso(telaCliente, "Não foi encontrado nenhum registro com o ID informado!");
+                    return false;
                 }
+            } catch (NumberFormatException e) {
+                MensagemUtil.addAviso(telaCliente, "O ID deve ser um número!");
+                return false;
             }
+            return true;
         }
-        return false;
+    }
+
+//    public boolean alterar() {
+//
+//        if (camposEmBranco()) {
+//            MensagemUtil.addAviso(telaCliente, "Preencha todos os campos para alterar um cliente!");
+//            return false;
+//        }
+//
+//        try {
+//            String cpf = telaCliente.getTfdCpf();
+//            String nome = telaCliente.getTfdNome();
+//            String identidade = telaCliente.getTfdIdentidade();
+//            String salario = telaCliente.getTfdSalario();
+//
+//            try {
+//                float salarioFloat = Float.parseFloat(salario);
+//
+//                cliente = new Cliente(cpf, nome, salarioFloat, identidade);
+//
+//                cliente.setNome(nome);
+//                cliente.setIdentidade(identidade);
+//                cliente.setSalario(salarioFloat);
+//
+//                clienteDao.alterar(cliente);
+//
+//                return true;
+//
+//            } catch (NumberFormatException e) {
+//                System.out.println(e.getMessage());
+//                MensagemUtil.addErro(telaCliente, "O campo de salário deve conter apenas números");
+//            }
+//
+//        } catch (NoSuchElementException e) {
+//            MensagemUtil.addAviso(telaCliente, "Não foi encontrado funcionário com o CPF informado!");
+//        }
+//        return false;
+//    }
+    
+    public void atualizarTabela() {
+        List<Cliente> municipios = clienteDao.listarTodos();
+
+        DefaultTableModel tabelaMunicipios = (DefaultTableModel) telaCliente.getTableClientes().getModel();
+        tabelaMunicipios.setRowCount(0);
+
+        municipios.forEach((Cliente cli) -> {
+            tabelaMunicipios.addRow(new Object[]{
+                cli.getId(),
+                cli.getNome(),
+                cli.getCpf(),
+                "Teste"
+            });
+        });
+    }
+
+    private boolean camposEmBranco() {
+        String nome = telaCliente.getTfdNome().getText();
+        String cpfCnpj = telaCliente.getTfdCpfCnpj().getText();
+        
+        return nome.isEmpty() || cpfCnpj.isEmpty();
     }
 }

@@ -12,8 +12,18 @@ public class Cliente {
     private String telefoneFixo;
     private String telefoneCelular;
     private String telefoneComercial;
+    
+    private static int ultimoId = 1;
 
     public Cliente() {
+        id = ultimoId;
+        ultimoId++;
+    }
+
+    public Cliente(String nome) {
+        id = ultimoId;
+        ultimoId++;
+        this.nome = nome;
     }
 
     public int getId() {
@@ -78,6 +88,32 @@ public class Cliente {
 
     public void setTelefoneComercial(String telefoneComercial) {
         this.telefoneComercial = telefoneComercial;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        return this.id == other.id;
+    }
+
+    public Object getCpf() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

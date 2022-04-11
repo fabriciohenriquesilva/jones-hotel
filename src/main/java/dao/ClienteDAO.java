@@ -27,21 +27,6 @@ public class ClienteDAO {
         
         return cliente;
     }
-
-    // Acredito que o metódo abaixo seja desnecessário
-    // Pois, para alterar um cliente, posso simplesmente
-    // Buscar pelo seu ID, retornar e modificar os seus atributos
-    // Com os devidos Setters na classe Controller
-//    public Cliente alterar(Cliente cliente){
-//        
-//        Cliente clienteAlterado = consultar(cliente.getCpf());
-//        
-//        clienteAlterado.setNome(cliente.getNome());
-//        clienteAlterado.setIdentidade(cliente.getIdentidade());
-//        clienteAlterado.setSalario(cliente.getSalario());
-//        
-//        return clienteAlterado;
-//    }
     
     public boolean excluir(Cliente cliente){
         if(clientes.contains(cliente)){
