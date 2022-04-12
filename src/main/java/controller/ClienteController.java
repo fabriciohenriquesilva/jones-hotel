@@ -141,7 +141,7 @@ public class ClienteController {
             return false;
         }
         
-        String textoId = telaCliente.getTfdId();
+        String textoId = telaCliente.getTfdId().getText();
         
         try {
             int id = Integer.parseInt(textoId);
