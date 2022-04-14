@@ -70,9 +70,9 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         tfdBairro = new javax.swing.JTextField();
         tfdComplemento = new javax.swing.JTextField();
         tfdCep = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbxMunicipio = new javax.swing.JComboBox<>();
         btnSalvarEndereco = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnLimparCamposEnd = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -291,11 +291,11 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
         lblCep.setText("CEP");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxMunicipio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnSalvarEndereco.setText("Salvar Endereço");
 
-        jButton2.setText("Limpar Campos");
+        btnLimparCamposEnd.setText("Limpar Campos");
 
         javax.swing.GroupLayout panelEndResidencialLayout = new javax.swing.GroupLayout(panelEndResidencial);
         panelEndResidencial.setLayout(panelEndResidencialLayout);
@@ -306,14 +306,14 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEndResidencialLayout.createSequentialGroup()
                         .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2)
+                            .addComponent(btnLimparCamposEnd)
                             .addGroup(panelEndResidencialLayout.createSequentialGroup()
                                 .addGap(0, 10, Short.MAX_VALUE)
                                 .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(panelEndResidencialLayout.createSequentialGroup()
                                         .addComponent(lblMunicipio)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(cbxMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(panelEndResidencialLayout.createSequentialGroup()
                                         .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(lblLogradouro)
@@ -339,7 +339,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        panelEndResidencialLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnSalvarEndereco, jButton2});
+        panelEndResidencialLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnLimparCamposEnd, btnSalvarEndereco});
 
         panelEndResidencialLayout.setVerticalGroup(
             panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,7 +359,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMunicipio)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblComplemento)
@@ -371,7 +371,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 .addGap(64, 64, 64)
                 .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvarEndereco)
-                    .addComponent(jButton2))
+                    .addComponent(btnLimparCamposEnd))
                 .addContainerGap(198, Short.MAX_VALUE))
         );
 
@@ -419,11 +419,11 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnLimparCamposEnd;
     private javax.swing.JButton btnRemover;
     private javax.swing.JButton btnSalvarEndereco;
     private javax.swing.JButton btnVeiculos;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbxMunicipio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
