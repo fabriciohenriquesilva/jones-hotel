@@ -29,12 +29,19 @@ public class ClienteController {
 
         String nome = telaCliente.getTfdNome().getText();
         String cpfCnpj = telaCliente.getTfdCpfCnpj().getText();
+        String telefoneFixo = telaCliente.getTfdTelFixo().getText();
+        String telefoneCelular = telaCliente.getTfdTelCelular().getText();
+        String telefoneComercial = telaCliente.getTfdTelComercial().getText();
 
         boolean ePessoaFisica = telaCliente.getRbtPessoaFisica().isSelected();
         boolean ePessoaJuridica = telaCliente.getRbtPessoaJuridica().isSelected();
 
         if (ePessoaFisica) {
             Cliente clientePf = new PessoaFisica(cpfCnpj, nome);
+            clientePf.setTelefoneFixo(telefoneFixo);
+            clientePf.setTelefoneCelular(telefoneCelular);
+            clientePf.setTelefoneComercial(telefoneComercial);
+            
             if (clienteDao.incluir(clientePf)) {
                 MensagemUtil.addInfo(telaCliente, "Cliente cadastrado com sucesso!");
                 return true;
@@ -42,6 +49,10 @@ public class ClienteController {
 
         } else if (ePessoaJuridica) {
             Cliente clientePj = new PessoaFisica(cpfCnpj, nome);
+            clientePj.setTelefoneFixo(telefoneFixo);
+            clientePj.setTelefoneCelular(telefoneCelular);
+            clientePj.setTelefoneComercial(telefoneComercial);
+            
             if (clienteDao.incluir(clientePj)) {
                 MensagemUtil.addInfo(telaCliente, "Cliente cadastrado com sucesso!");
                 return true;
@@ -122,6 +133,31 @@ public class ClienteController {
 //        }
 //        return false;
 //    }
+    
+    public boolean excluir() {
+        
+        if (camposEmBranco()) {
+            MensagemUtil.addAviso(telaCliente, "Não existe nenhum registro selecionado para exclusão!");
+            return false;
+        }
+        
+        String textoId = telaCliente.getTfdId().getText();
+        
+        try {
+            int id = Integer.parseInt(textoId);
+            
+            try {
+                Cliente cliente = clienteDao.consultar(id);
+                return clienteDao.excluir(cliente);
+            } catch (NoSuchElementException e) {
+                MensagemUtil.addAviso(telaCliente, "Não foi encontrado nenhum registro com o ID informado!");
+            }
+        } catch (NumberFormatException e){
+            MensagemUtil.addAviso(telaCliente, "O ID deve ser um número!");
+            return false;
+        }
+        return false;
+    }
     
     public void atualizarTabela() {
         List<Cliente> municipios = clienteDao.listarTodos();
