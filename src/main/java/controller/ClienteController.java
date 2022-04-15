@@ -32,12 +32,13 @@ public class ClienteController {
         String telefoneFixo = telaCliente.getTfdTelFixo().getText();
         String telefoneCelular = telaCliente.getTfdTelCelular().getText();
         String telefoneComercial = telaCliente.getTfdTelComercial().getText();
+        String nomeFantasia = telaCliente.getTfdNomeFantasia().getText();
 
         boolean ePessoaFisica = telaCliente.getRbtPessoaFisica().isSelected();
         boolean ePessoaJuridica = telaCliente.getRbtPessoaJuridica().isSelected();
 
         if (ePessoaFisica) {
-            Cliente clientePf = new PessoaFisica(cpfCnpj, nome);
+            PessoaFisica clientePf = new PessoaFisica(cpfCnpj, nome);
             clientePf.setTelefoneFixo(telefoneFixo);
             clientePf.setTelefoneCelular(telefoneCelular);
             clientePf.setTelefoneComercial(telefoneComercial);
@@ -48,7 +49,8 @@ public class ClienteController {
             }
 
         } else if (ePessoaJuridica) {
-            Cliente clientePj = new PessoaFisica(cpfCnpj, nome);
+            PessoaJuridica clientePj = new PessoaJuridica(cpfCnpj, nome);
+            clientePj.setNomeFantasia(nomeFantasia);
             clientePj.setTelefoneFixo(telefoneFixo);
             clientePj.setTelefoneCelular(telefoneCelular);
             clientePj.setTelefoneComercial(telefoneComercial);
@@ -61,8 +63,7 @@ public class ClienteController {
         return false;
     }
 
-    public boolean consultar() {
-        String textoId = telaCliente.getTfdId().getText();
+    public boolean consultar(String textoId) {
         if (textoId.isEmpty()) {
             MensagemUtil.addAviso(telaCliente, "Por favor, informe um ID para realizar a busca!");
             return false;
@@ -75,6 +76,7 @@ public class ClienteController {
                     
                     if(cliente instanceof PessoaJuridica){
                         telaCliente.getTfdCpfCnpj().setText(((PessoaJuridica) cliente).getCnpj());
+                        telaCliente.getTfdNomeFantasia().setText(((PessoaJuridica) cliente).getNomeFantasia());
                     }
                     if(cliente instanceof PessoaFisica){
                         telaCliente.getTfdCpfCnpj().setText(((PessoaFisica) cliente).getCpf());
@@ -85,6 +87,7 @@ public class ClienteController {
                     telaCliente.getTfdTelCelular().setText(cliente.getTelefoneCelular());
                     telaCliente.getTfdTelComercial().setText(cliente.getTelefoneComercial());
                     
+                    return true;
                 } catch (NoSuchElementException e) {
                     MensagemUtil.addAviso(telaCliente, "Não foi encontrado nenhum registro com o ID informado!");
                     return false;
@@ -93,7 +96,6 @@ public class ClienteController {
                 MensagemUtil.addAviso(telaCliente, "O ID deve ser um número!");
                 return false;
             }
-            return true;
         }
     }
 
@@ -160,25 +162,35 @@ public class ClienteController {
     }
     
     public void atualizarTabela() {
-        List<Cliente> municipios = clienteDao.listarTodos();
+        List<Cliente> clientes = clienteDao.listarTodos();
 
-        DefaultTableModel tabelaMunicipios = (DefaultTableModel) telaCliente.getTableClientes().getModel();
-        tabelaMunicipios.setRowCount(0);
-
-        municipios.forEach((Cliente cli) -> {
-            tabelaMunicipios.addRow(new Object[]{
-                cli.getId(),
-                cli.getNome(),
-                cli.getCpf(),
-                "Teste"
-            });
-        });
+        DefaultTableModel tabelaClientes = (DefaultTableModel) telaCliente.getTableClientes().getModel();
+        tabelaClientes.setRowCount(0);
+        
+        for(Cliente cli : clientes){
+            if(cli instanceof PessoaFisica){
+                tabelaClientes.addRow(new Object[]{
+                    cli.getId(),
+                    cli.getNome(),
+                    cli.getCpf(),
+                    "Pessoa Física"});
+            }
+            if(cli instanceof PessoaJuridica){
+                tabelaClientes.addRow(new Object[]{
+                    cli.getId(),
+                    cli.getNome(),
+                    ((PessoaJuridica) cli).getCnpj(),
+                    "Pessoa Jurídica"});
+            }
+        }
     }
 
     private boolean camposEmBranco() {
         String nome = telaCliente.getTfdNome().getText();
         String cpfCnpj = telaCliente.getTfdCpfCnpj().getText();
+        boolean pfSelecionado = telaCliente.getRbtPessoaFisica().isSelected();
+        boolean pjSelecionado = telaCliente.getRbtPessoaJuridica().isSelected();
         
-        return nome.isEmpty() || cpfCnpj.isEmpty();
+        return nome.isEmpty() || cpfCnpj.isEmpty() || (!pfSelecionado && !pjSelecionado);
     }
 }

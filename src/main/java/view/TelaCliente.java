@@ -1,23 +1,65 @@
 package view;
 
 import controller.ClienteController;
+import javax.swing.JInternalFrame;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import util.ViewUtil;
 
 public class TelaCliente extends javax.swing.JInternalFrame {
 
     private final ClienteController clienteController;
-    
+
     public TelaCliente() {
         initComponents();
-        
+
         clienteController = new ClienteController(this);
-        
-        DefaultTableModel tabelaMunicipios = (DefaultTableModel) tableClientes.getModel();
-        tabelaMunicipios.setRowCount(0);
+
+        DefaultTableModel tabelaClientes = (DefaultTableModel) tableClientes.getModel();
+        tabelaClientes.setRowCount(0);
+
+        alterarEstadoBotoes(false, true, false, false);
+        estadoTelaInclusao(false);
+    }
+
+    private void alterarEstadoBotoes(boolean incluir, boolean consultar, boolean alterar, boolean excluir) {
+        btnIncluir.setEnabled(incluir);
+        btnConsultar.setEnabled(consultar);
+        btnExcluir.setEnabled(excluir);
+        btnAlterar.setEnabled(alterar);
+    }
+
+    private void estadoTelaInclusao(boolean inclusao) {
+        tfdId.setEnabled(!inclusao);
+        tfdBairro.setEnabled(inclusao);
+        tfdCep.setEnabled(inclusao);
+        tfdComplemento.setEnabled(inclusao);
+        tfdCpfCnpj.setEnabled(inclusao);
+        tfdLogradouro.setEnabled(inclusao);
+        tfdNome.setEnabled(inclusao);
+        tfdNomeFantasia.setEnabled(inclusao);
+        tfdNumero.setEnabled(inclusao);
+        tfdTelCelular.setEnabled(inclusao);
+        tfdTelComercial.setEnabled(inclusao);
+        tfdTelFixo.setEnabled(inclusao);
+        rbtPessoaFisica.setEnabled(inclusao);
+        rbtPessoaJuridica.setEnabled(inclusao);
+    }
+
+    public void limparCampos() {
+        tfdBairro.setText("");
+        tfdCep.setText("");
+        tfdComplemento.setText("");
+        tfdCpfCnpj.setText("");
+        tfdId.setText("");
+        tfdLogradouro.setText("");
+        tfdNome.setText("");
+        tfdNomeFantasia.setText("");
+        tfdNumero.setText("");
+        tfdTelCelular.setText("");
+        tfdTelComercial.setText("");
+        tfdTelFixo.setText("");
     }
 
     /**
@@ -50,14 +92,16 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         btnConsultar = new javax.swing.JButton();
         lblNomeFantasia = new javax.swing.JLabel();
         tfdNomeFantasia = new javax.swing.JTextField();
-        btnCadastrar = new javax.swing.JButton();
-        btnRemover = new javax.swing.JButton();
+        btnIncluir = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnVeiculos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableClientes = new javax.swing.JTable();
         lblTableClientes = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        btnNovo = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         panelEndResidencial = new javax.swing.JPanel();
         lblLogradouro = new javax.swing.JLabel();
         tfdLogradouro = new javax.swing.JTextField();
@@ -109,17 +153,17 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
         lblNomeFantasia.setText("Nome Fantasia:");
 
-        btnCadastrar.setText("Cadastrar");
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        btnIncluir.setText("Incluir");
+        btnIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarActionPerformed(evt);
+                btnIncluirActionPerformed(evt);
             }
         });
 
-        btnRemover.setText("Remover");
-        btnRemover.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoverActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -155,11 +199,30 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableClientes);
 
         lblTableClientes.setText("Clientes cadastrados");
 
         jLabel1.setText("* Campos obrigatórios");
+
+        btnNovo.setText("Novo");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelClienteLayout = new javax.swing.GroupLayout(panelCliente);
         panelCliente.setLayout(panelClienteLayout);
@@ -168,60 +231,71 @@ public class TelaCliente extends javax.swing.JInternalFrame {
             .addGroup(panelClienteLayout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelClienteLayout.createSequentialGroup()
-                        .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(panelClienteLayout.createSequentialGroup()
+                            .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblTableClientes)
+                                .addComponent(jLabel1)
+                                .addGroup(panelClienteLayout.createSequentialGroup()
+                                    .addComponent(lblTipoCliente)
+                                    .addGap(27, 27, 27)
+                                    .addComponent(rbtPessoaFisica)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(rbtPessoaJuridica))
+                                .addGroup(panelClienteLayout.createSequentialGroup()
+                                    .addComponent(lblNome)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(tfdNome, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnVeiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panelClienteLayout.createSequentialGroup()
-                                .addComponent(lblCpf)
+                                .addComponent(lblId)
                                 .addGap(18, 18, 18)
-                                .addComponent(tfdCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnConsultar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnNovo))
                             .addGroup(panelClienteLayout.createSequentialGroup()
-                                .addComponent(lblTelCelular)
+                                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panelClienteLayout.createSequentialGroup()
+                                        .addComponent(lblCpf)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tfdCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelClienteLayout.createSequentialGroup()
+                                        .addComponent(lblTelCelular)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tfdTelCelular))
+                                    .addGroup(panelClienteLayout.createSequentialGroup()
+                                        .addComponent(lblNomeFantasia)
+                                        .addGap(42, 42, 42)
+                                        .addComponent(tfdNomeFantasia)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblTelComercial)
+                                    .addComponent(lblTelFixo))
                                 .addGap(18, 18, 18)
-                                .addComponent(tfdTelCelular)))
-                        .addGap(33, 33, 33)
-                        .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblTelComercial)
-                            .addComponent(lblTelFixo))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfdTelFixo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfdTelComercial, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblTableClientes)
-                        .addComponent(jLabel1)
-                        .addGroup(panelClienteLayout.createSequentialGroup()
-                            .addComponent(lblNomeFantasia)
-                            .addGap(42, 42, 42)
-                            .addComponent(tfdNomeFantasia))
-                        .addGroup(panelClienteLayout.createSequentialGroup()
-                            .addComponent(lblTipoCliente)
-                            .addGap(27, 27, 27)
-                            .addComponent(rbtPessoaFisica)
-                            .addGap(18, 18, 18)
-                            .addComponent(rbtPessoaJuridica))
-                        .addGroup(panelClienteLayout.createSequentialGroup()
-                            .addComponent(lblNome)
-                            .addGap(18, 18, 18)
-                            .addComponent(tfdNome, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelClienteLayout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addComponent(lblId)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfdTelFixo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfdTelComercial, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelClienteLayout.createSequentialGroup()
                             .addComponent(btnAlterar)
                             .addGap(37, 37, 37)
-                            .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(39, 39, 39)
-                            .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnVeiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(122, 122, 122))
         );
+
+        panelClienteLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnConsultar, btnNovo});
+
+        panelClienteLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCancelar, btnIncluir});
+
         panelClienteLayout.setVerticalGroup(
             panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelClienteLayout.createSequentialGroup()
@@ -229,23 +303,25 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblId)
                     .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConsultar))
+                    .addComponent(btnConsultar)
+                    .addComponent(btnNovo))
                 .addGap(11, 11, 11)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
-                    .addComponent(tfdNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfdNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVeiculos))
                 .addGap(18, 18, 18)
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbtPessoaFisica)
                     .addComponent(rbtPessoaJuridica)
                     .addComponent(lblTipoCliente))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNomeFantasia)
                     .addComponent(tfdNomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(9, 9, 9)
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelClienteLayout.createSequentialGroup()
                         .addGap(41, 41, 41)
@@ -264,17 +340,17 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                             .addComponent(lblTelCelular)
                             .addComponent(tfdTelCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblTelComercial))))
-                .addGap(39, 39, 39)
+                .addGap(21, 21, 21)
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRemover)
+                    .addComponent(btnExcluir)
                     .addComponent(btnAlterar)
-                    .addComponent(btnCadastrar)
-                    .addComponent(btnVeiculos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                    .addComponent(btnIncluir)
+                    .addComponent(btnCancelar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(lblTableClientes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Dados Cadastrais", panelCliente);
@@ -305,25 +381,23 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 .addGap(193, 193, 193)
                 .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEndResidencialLayout.createSequentialGroup()
+                        .addGap(0, 10, Short.MAX_VALUE)
                         .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnLimparCamposEnd)
                             .addGroup(panelEndResidencialLayout.createSequentialGroup()
-                                .addGap(0, 10, Short.MAX_VALUE)
+                                .addComponent(lblMunicipio)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbxMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelEndResidencialLayout.createSequentialGroup()
                                 .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(panelEndResidencialLayout.createSequentialGroup()
-                                        .addComponent(lblMunicipio)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cbxMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelEndResidencialLayout.createSequentialGroup()
-                                        .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblLogradouro)
-                                            .addComponent(lblNumero)
-                                            .addComponent(lblBairro))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(tfdLogradouro)
-                                            .addComponent(tfdNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tfdBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(lblLogradouro)
+                                    .addComponent(lblNumero)
+                                    .addComponent(lblBairro))
+                                .addGap(18, 18, 18)
+                                .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfdLogradouro)
+                                    .addComponent(tfdNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfdBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(203, 203, 203))
                     .addGroup(panelEndResidencialLayout.createSequentialGroup()
                         .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,7 +446,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvarEndereco)
                     .addComponent(btnLimparCamposEnd))
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Endereço", panelEndResidencial);
@@ -381,46 +455,77 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 784, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         setBounds(0, 0, 800, 600);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        clienteController.incluir();
-        clienteController.atualizarTabela();
-        ViewUtil.limparCampos(this);
-    }//GEN-LAST:event_btnCadastrarActionPerformed
+    private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
+        if (clienteController.incluir()) {
+            clienteController.atualizarTabela();
+            limparCampos();
+            estadoTelaInclusao(false);
+            alterarEstadoBotoes(false, true, false, false);
+        }
+    }//GEN-LAST:event_btnIncluirActionPerformed
 
-    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-//        clienteController.excluir();
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        clienteController.excluir();
         clienteController.atualizarTabela();
-        ViewUtil.limparCampos(this);
-    }//GEN-LAST:event_btnRemoverActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
 //        clienteController.alterar();
         clienteController.atualizarTabela();
-        ViewUtil.limparCampos(this);
+        limparCampos();
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        clienteController.consultar();
+        if (clienteController.consultar(tfdId.getText())) {
+            tfdId.setEnabled(false);
+            alterarEstadoBotoes(false, false, true, true);
+            estadoTelaInclusao(true);
+        }
     }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        alterarEstadoBotoes(true, false, false, false);
+        estadoTelaInclusao(true);
+        limparCampos();
+    }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        alterarEstadoBotoes(false, true, false, false);
+        estadoTelaInclusao(false);
+        limparCampos();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void tableClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableClientesMouseClicked
+        if(evt.getClickCount() == 2){
+            Integer id = (Integer) tableClientes.getModel().getValueAt(tableClientes.getSelectedRow(), 0);
+            clienteController.consultar(String.valueOf(id));
+            tfdId.setText(String.valueOf(id));
+            alterarEstadoBotoes(false, false, true, true);
+            estadoTelaInclusao(true);
+        }
+    }//GEN-LAST:event_tableClientesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btgTipoCliente;
     private javax.swing.JButton btnAlterar;
-    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnIncluir;
     private javax.swing.JButton btnLimparCamposEnd;
-    private javax.swing.JButton btnRemover;
+    private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSalvarEndereco;
     private javax.swing.JButton btnVeiculos;
     private javax.swing.JComboBox<String> cbxMunicipio;

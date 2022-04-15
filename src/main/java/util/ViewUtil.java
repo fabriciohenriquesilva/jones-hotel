@@ -8,6 +8,7 @@ public class ViewUtil {
     
     public static void limparCampos(JInternalFrame tela) {
         for (Component c : tela.getComponents()) {
+//            if(c instanceof )
             if (c instanceof JTextField) {
                 ((JTextField) c).setText("");
             }
