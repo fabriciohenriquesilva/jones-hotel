@@ -1,6 +1,5 @@
 package dao;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import model.Municipio;
@@ -10,7 +9,7 @@ public class MunicipioDAO {
     private final List<Municipio> municipios;
 
     public MunicipioDAO() {
-        municipios = new ArrayList<>();
+        municipios = BaseDeDados.getMunicipios();
     }
     
     public boolean incluir(Municipio municipio){
