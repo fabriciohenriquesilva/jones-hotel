@@ -1,7 +1,7 @@
 package view;
 
 import controller.ClienteController;
-import javax.swing.JInternalFrame;
+import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 public class TelaCliente extends javax.swing.JInternalFrame {
 
     private final ClienteController clienteController;
-
+    
     public TelaCliente() {
         initComponents();
 
@@ -32,6 +32,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
     private void estadoTelaInclusao(boolean inclusao) {
         tfdId.setEnabled(!inclusao);
+        
         tfdBairro.setEnabled(inclusao);
         tfdCep.setEnabled(inclusao);
         tfdComplemento.setEnabled(inclusao);
@@ -45,9 +46,11 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         tfdTelFixo.setEnabled(inclusao);
         rbtPessoaFisica.setEnabled(inclusao);
         rbtPessoaJuridica.setEnabled(inclusao);
+        
+        panelEndResidencial.setEnabled(inclusao);
     }
 
-    public void limparCampos() {
+    private void limparCampos() {
         tfdBairro.setText("");
         tfdCep.setText("");
         tfdComplemento.setText("");
@@ -61,7 +64,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         tfdTelComercial.setText("");
         tfdTelFixo.setText("");
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -115,8 +118,6 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         tfdComplemento = new javax.swing.JTextField();
         tfdCep = new javax.swing.JTextField();
         cbxMunicipio = new javax.swing.JComboBox<>();
-        btnSalvarEndereco = new javax.swing.JButton();
-        btnLimparCamposEnd = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -230,66 +231,69 @@ public class TelaCliente extends javax.swing.JInternalFrame {
             panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelClienteLayout.createSequentialGroup()
                 .addGap(89, 89, 89)
-                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(panelClienteLayout.createSequentialGroup()
-                            .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblTableClientes)
-                                .addComponent(jLabel1)
+                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelClienteLayout.createSequentialGroup()
+                        .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(panelClienteLayout.createSequentialGroup()
-                                    .addComponent(lblTipoCliente)
-                                    .addGap(27, 27, 27)
-                                    .addComponent(rbtPessoaFisica)
+                                    .addComponent(lblId)
                                     .addGap(18, 18, 18)
-                                    .addComponent(rbtPessoaJuridica))
-                                .addGroup(panelClienteLayout.createSequentialGroup()
-                                    .addComponent(lblNome)
+                                    .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(tfdNome, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnVeiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnConsultar)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnNovo))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelClienteLayout.createSequentialGroup()
+                                    .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(tfdNomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblTableClientes)
+                                            .addComponent(jLabel1)
+                                            .addGroup(panelClienteLayout.createSequentialGroup()
+                                                .addComponent(lblTipoCliente)
+                                                .addGap(27, 27, 27)
+                                                .addComponent(rbtPessoaFisica)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(rbtPessoaJuridica))
+                                            .addGroup(panelClienteLayout.createSequentialGroup()
+                                                .addComponent(lblNome)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(tfdNome, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnVeiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelClienteLayout.createSequentialGroup()
-                                .addComponent(lblId)
-                                .addGap(18, 18, 18)
-                                .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnConsultar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnNovo))
+                                .addComponent(btnAlterar)
+                                .addGap(37, 37, 37)
+                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(btnIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(122, 122, 122))
+                    .addGroup(panelClienteLayout.createSequentialGroup()
+                        .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelClienteLayout.createSequentialGroup()
-                                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(panelClienteLayout.createSequentialGroup()
-                                        .addComponent(lblCpf)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tfdCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelClienteLayout.createSequentialGroup()
-                                        .addComponent(lblTelCelular)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tfdTelCelular))
-                                    .addGroup(panelClienteLayout.createSequentialGroup()
-                                        .addComponent(lblNomeFantasia)
-                                        .addGap(42, 42, 42)
-                                        .addComponent(tfdNomeFantasia)))
+                                .addComponent(lblCpf)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfdCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelClienteLayout.createSequentialGroup()
+                                .addComponent(lblTelCelular)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfdTelCelular))
+                            .addComponent(lblNomeFantasia))
+                        .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelClienteLayout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(lblTelComercial))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClienteLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblTelComercial)
-                                    .addComponent(lblTelFixo))
-                                .addGap(18, 18, 18)
-                                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfdTelFixo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfdTelComercial, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelClienteLayout.createSequentialGroup()
-                            .addComponent(btnAlterar)
-                            .addGap(37, 37, 37)
-                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(39, 39, 39)
-                            .addComponent(btnIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(122, 122, 122))
+                                .addComponent(lblTelFixo)))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfdTelFixo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfdTelComercial, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         panelClienteLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnConsultar, btnNovo});
@@ -321,32 +325,28 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNomeFantasia)
                     .addComponent(tfdNomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                .addGap(18, 18, 18)
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tfdCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblTelFixo)
+                        .addComponent(tfdTelFixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelClienteLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(tfdTelComercial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelClienteLayout.createSequentialGroup()
-                        .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(tfdCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblTelFixo)
-                                .addComponent(tfdTelFixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelClienteLayout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(lblCpf)))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTelCelular)
-                            .addComponent(tfdTelCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTelComercial))))
-                .addGap(21, 21, 21)
+                        .addGap(3, 3, 3)
+                        .addComponent(lblCpf)))
+                .addGap(18, 18, 18)
+                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTelCelular)
+                    .addComponent(tfdTelCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfdTelComercial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTelComercial))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluir)
                     .addComponent(btnAlterar)
                     .addComponent(btnIncluir)
                     .addComponent(btnCancelar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(lblTableClientes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -369,10 +369,6 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
         cbxMunicipio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        btnSalvarEndereco.setText("Salvar Endereço");
-
-        btnLimparCamposEnd.setText("Limpar Campos");
-
         javax.swing.GroupLayout panelEndResidencialLayout = new javax.swing.GroupLayout(panelEndResidencial);
         panelEndResidencial.setLayout(panelEndResidencialLayout);
         panelEndResidencialLayout.setHorizontalGroup(
@@ -383,7 +379,6 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEndResidencialLayout.createSequentialGroup()
                         .addGap(0, 10, Short.MAX_VALUE)
                         .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnLimparCamposEnd)
                             .addGroup(panelEndResidencialLayout.createSequentialGroup()
                                 .addComponent(lblMunicipio)
                                 .addGap(18, 18, 18)
@@ -400,21 +395,15 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                                     .addComponent(tfdBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(203, 203, 203))
                     .addGroup(panelEndResidencialLayout.createSequentialGroup()
-                        .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelEndResidencialLayout.createSequentialGroup()
-                                .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblComplemento)
-                                    .addComponent(lblCep))
-                                .addGap(18, 18, 18)
-                                .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfdComplemento)
-                                    .addComponent(tfdCep, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(btnSalvarEndereco))
+                        .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblComplemento)
+                            .addComponent(lblCep))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfdComplemento)
+                            .addComponent(tfdCep, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
-
-        panelEndResidencialLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnLimparCamposEnd, btnSalvarEndereco});
-
         panelEndResidencialLayout.setVerticalGroup(
             panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelEndResidencialLayout.createSequentialGroup()
@@ -442,11 +431,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCep)
                     .addComponent(tfdCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
-                .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvarEndereco)
-                    .addComponent(btnLimparCamposEnd))
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Endereço", panelEndResidencial);
@@ -466,7 +451,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
-        if (clienteController.incluir()) {
+        if(clienteController.incluir()){
             clienteController.atualizarTabela();
             limparCampos();
             estadoTelaInclusao(false);
@@ -524,9 +509,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnIncluir;
-    private javax.swing.JButton btnLimparCamposEnd;
     private javax.swing.JButton btnNovo;
-    private javax.swing.JButton btnSalvarEndereco;
     private javax.swing.JButton btnVeiculos;
     private javax.swing.JComboBox<String> cbxMunicipio;
     private javax.swing.JLabel jLabel1;
@@ -646,4 +629,53 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         this.rbtPessoaJuridica = rbtPessoaJuridica;
     }
 
+    public JComboBox<String> getCbxMunicipio() {
+        return cbxMunicipio;
+    }
+
+    public void setCbxMunicipio(JComboBox<String> cbxMunicipio) {
+        this.cbxMunicipio = cbxMunicipio;
+    }
+
+    public JTextField getTfdBairro() {
+        return tfdBairro;
+    }
+
+    public void setTfdBairro(JTextField tfdBairro) {
+        this.tfdBairro = tfdBairro;
+    }
+
+    public JTextField getTfdCep() {
+        return tfdCep;
+    }
+
+    public void setTfdCep(JTextField tfdCep) {
+        this.tfdCep = tfdCep;
+    }
+
+    public JTextField getTfdComplemento() {
+        return tfdComplemento;
+    }
+
+    public void setTfdComplemento(JTextField tfdComplemento) {
+        this.tfdComplemento = tfdComplemento;
+    }
+
+    public JTextField getTfdLogradouro() {
+        return tfdLogradouro;
+    }
+
+    public void setTfdLogradouro(JTextField tfdLogradouro) {
+        this.tfdLogradouro = tfdLogradouro;
+    }
+
+    public JTextField getTfdNumero() {
+        return tfdNumero;
+    }
+
+    public void setTfdNumero(JTextField tfdNumero) {
+        this.tfdNumero = tfdNumero;
+    }
+
+    
 }
