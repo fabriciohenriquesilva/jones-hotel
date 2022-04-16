@@ -1,6 +1,10 @@
 package view;
 
 public class Principal extends javax.swing.JFrame {
+    
+    private final TelaCliente telaCliente = new TelaCliente();
+    private final TelaMunicipio telaMunicipio = new TelaMunicipio();
+    private final TelaVeiculo telaVeiculo = new TelaVeiculo();
 
     public Principal() {
         initComponents();
@@ -85,19 +89,16 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadClienteActionPerformed
-        TelaCliente telaCliente = new TelaCliente();
         desktop.add(telaCliente);
         telaCliente.setVisible(true);
     }//GEN-LAST:event_menuCadClienteActionPerformed
 
     private void menuCadMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadMunicipioActionPerformed
-        TelaMunicipio telaMunicipio = new TelaMunicipio();
         desktop.add(telaMunicipio);
         telaMunicipio.setVisible(true);
     }//GEN-LAST:event_menuCadMunicipioActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        TelaVeiculo telaVeiculo = new TelaVeiculo();
         desktop.add(telaVeiculo);
         telaVeiculo.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed

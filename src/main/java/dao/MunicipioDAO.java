@@ -28,6 +28,15 @@ public class MunicipioDAO {
         return municipio;
     }
     
+    public Municipio consultar(String nome){
+        for(Municipio m : municipios){
+            if(nome.equals(m.getNome())){
+                return m;
+            }
+        }
+        return null;
+    }
+    
     public boolean excluir(Municipio municipio){
         if(municipios.contains(municipio)){
             return municipios.remove(municipio);

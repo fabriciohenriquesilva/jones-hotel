@@ -1,11 +1,15 @@
 package controller;
 
 import dao.ClienteDAO;
+import dao.MunicipioDAO;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
 import model.Endereco;
+import model.Municipio;
 import model.PessoaFisica;
 import model.PessoaJuridica;
 import util.MensagemUtil;
@@ -38,11 +42,14 @@ public class ClienteController {
         String logradouro = telaCliente.getTfdLogradouro().getText();
         String numero = telaCliente.getTfdNumero().getText();
         String bairro = telaCliente.getTfdBairro().getText();
-//        String municipio = telaCliente.getTfdM().getText();
+
+        String nomeMunicipio = (String) telaCliente.getCbxMunicipio().getSelectedItem();
+        Municipio municipio = new MunicipioDAO().consultar(nomeMunicipio);
+
         String complemento = telaCliente.getTfdComplemento().getText();
         String cep = telaCliente.getTfdCep().getText();
 
-        Endereco endereco = new Endereco(logradouro, numero, bairro, complemento, cep);
+        Endereco endereco = new Endereco(logradouro, numero, bairro, municipio, complemento, cep);
 
         boolean ePessoaFisica = telaCliente.getRbtPessoaFisica().isSelected();
         boolean ePessoaJuridica = telaCliente.getRbtPessoaJuridica().isSelected();
@@ -107,7 +114,8 @@ public class ClienteController {
                     telaCliente.getTfdNumero().setText(numero);
                     String bairro = cliente.getEnderecoResidencial().getBairro();
                     telaCliente.getTfdBairro().setText(bairro);
-//        String municipio = telaCliente.getTfdM().getText();
+                    String municipio = cliente.getEnderecoResidencial().getMunicipio().getNome();
+                    telaCliente.getCbxMunicipio().setSelectedItem(municipio);
                     String complemento = cliente.getEnderecoResidencial().getComplemento();
                     telaCliente.getTfdComplemento().setText(complemento);
                     String cep = cliente.getEnderecoResidencial().getCep();
@@ -217,5 +225,17 @@ public class ClienteController {
         boolean pjSelecionado = telaCliente.getRbtPessoaJuridica().isSelected();
 
         return nome.isEmpty() || cpfCnpj.isEmpty() || (!pfSelecionado && !pjSelecionado);
+    }
+
+    public void atualizarMunicipios() {
+        List<Municipio> municipios = new MunicipioDAO().listarTodos();
+        List<String> nomesMunicipios = new ArrayList<>();
+
+        for (Municipio m : municipios) {
+            nomesMunicipios.add(m.getNome());
+        }
+        Object[] nomes = nomesMunicipios.toArray();
+
+        telaCliente.getCbxMunicipio().setModel(new DefaultComboBoxModel(nomes));
     }
 }
