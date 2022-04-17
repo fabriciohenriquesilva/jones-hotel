@@ -1,7 +1,6 @@
 package dao;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import model.Municipio;
 
 public class MunicipioDAO {
@@ -19,22 +18,22 @@ public class MunicipioDAO {
         return municipios.add(municipio);
     }
     
-    public Municipio consultar(int id) throws NoSuchElementException {
-        Municipio municipio = municipios.stream()
-                .filter(mncp -> id == mncp.getId())
-                .findFirst()
-                .orElseThrow();
-        
-        return municipio;
+    public Municipio consultar(int id) throws NullPointerException {
+        for(Municipio m : municipios){
+            if(id == m.getId()){
+                return m;
+            }
+        }
+        throw new NullPointerException();
     }
     
-    public Municipio consultar(String nome){
+    public Municipio consultar(String nome) throws NullPointerException{
         for(Municipio m : municipios){
             if(nome.equals(m.getNome())){
                 return m;
             }
         }
-        return null;
+        throw new NullPointerException();
     }
     
     public boolean excluir(Municipio municipio){

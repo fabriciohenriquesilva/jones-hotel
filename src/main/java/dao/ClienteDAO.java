@@ -19,13 +19,13 @@ public class ClienteDAO {
         return clientes.add(cliente);
     }
     
-    public Cliente consultar(int id){
-        Cliente cliente = clientes.stream()
-                .filter(cli -> id == cli.getId())
-                .findFirst()
-                .orElseThrow();
-        
-        return cliente;
+    public Cliente consultar(int id) throws NullPointerException {
+        for(Cliente cli : clientes){
+            if(id == cli.getId()){
+                return cli;
+            }
+        }
+        throw new NullPointerException();
     }
     
     public boolean excluir(Cliente cliente){

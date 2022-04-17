@@ -41,7 +41,11 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" alignment="1" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -62,86 +66,88 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="89" pref="89" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                              <Component id="lblId" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="tfdId" min="-2" pref="160" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnConsultar" linkSize="2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnNovo" linkSize="2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="lblId" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="tfdId" min="-2" pref="160" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="btnConsultar" linkSize="2" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="btnNovo" linkSize="2" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="tfdNomeFantasia" alignment="1" min="-2" pref="271" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="lblTableClientes" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="lblTipoCliente" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                                      <Component id="rbtPessoaFisica" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="rbtPessoaJuridica" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="lblNome" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="tfdNome" min="-2" pref="330" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="btnVeiculos" min="-2" pref="119" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="jScrollPane1" alignment="0" min="-2" pref="600" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblNome" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="tfdNome" min="-2" pref="330" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnVeiculos" min="-2" pref="119" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Component id="btnAlterar" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                       <Component id="btnExcluir" min="-2" pref="119" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                       <Component id="btnIncluir" linkSize="3" min="-2" pref="119" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                                       <Component id="btnCancelar" linkSize="3" min="-2" pref="104" max="-2" attributes="0"/>
                                   </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblCpf" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="tfdCpfCnpj" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblTableClientes" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane1" alignment="0" min="-2" pref="600" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="lblCpf" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="tfdCpfCnpj" min="-2" pref="170" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="lblTelCelular" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="tfdTelCelular" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="lblNomeFantasia" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                                                  <Component id="lblTelComercial" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="lblTelFixo" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="tfdTelFixo" min="-2" pref="150" max="-2" attributes="0"/>
+                                              <Component id="tfdTelComercial" min="-2" pref="150" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="tfdNomeFantasia" alignment="1" min="-2" pref="271" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="lblTipoCliente" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                                  <Component id="rbtPessoaFisica" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="rbtPessoaJuridica" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                          <Component id="lblCamposObrigatorios" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblTelCelular" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="tfdTelCelular" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="lblNomeFantasia" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                                      <Component id="lblTelComercial" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lblTelFixo" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tfdTelFixo" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Component id="tfdTelComercial" min="-2" pref="150" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -159,8 +165,6 @@
                           <Component id="btnConsultar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnNovo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblNome" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -177,7 +181,9 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblNomeFantasia" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfdNomeFantasia" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCamposObrigatorios" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="tfdCpfCnpj" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -192,24 +198,24 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="tfdTelComercial" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="lblTelCelular" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="tfdTelCelular" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblTelComercial" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="47" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCancelar" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="lblTableClientes" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="125" max="-2" attributes="0"/>
-                      <EmptySpace pref="71" max="32767" attributes="0"/>
+                      <EmptySpace pref="101" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -351,7 +357,7 @@
                 <Property name="text" type="java.lang.String" value="Clientes cadastrados"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="lblCamposObrigatorios">
               <Properties>
                 <Property name="text" type="java.lang.String" value="* Campos obrigat&#xf3;rios"/>
               </Properties>
@@ -374,7 +380,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="panelEndResidencial">
+        <Container class="javax.swing.JPanel" name="panelEndereco">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Endere&#xe7;o">
@@ -386,138 +392,300 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="lblMunicipio" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="cbxMunicipio" min="-2" pref="300" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="lblLogradouro" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblNumero" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblBairro" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="tfdLogradouro" max="32767" attributes="0"/>
-                                          <Component id="tfdNumero" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                                          <Component id="tfdBairro" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="lblComplemento" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblCep" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="tfdComplemento" max="32767" attributes="0"/>
-                                  <Component id="tfdCep" min="-2" pref="160" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="panelEndComercial" max="32767" attributes="0"/>
+                          <Component id="panelEndResidencial" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace pref="46" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblLogradouro" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfdLogradouro" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="panelEndResidencial" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblNumero" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfdNumero" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblBairro" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfdBairro" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblMunicipio" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbxMunicipio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblComplemento" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfdComplemento" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblCep" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfdCep" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="289" max="32767" attributes="0"/>
+                      <Component id="panelEndComercial" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="129" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblLogradouro">
+            <Container class="javax.swing.JPanel" name="panelEndResidencial">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Logradouro"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="tfdLogradouro">
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblNumero">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="N&#xfa;mero"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblBairro">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Bairro"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblMunicipio">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Munic&#xed;pio"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblComplemento">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Complemento"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblCep">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="CEP"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="tfdNumero">
-            </Component>
-            <Component class="javax.swing.JTextField" name="tfdBairro">
-            </Component>
-            <Component class="javax.swing.JTextField" name="tfdComplemento">
-            </Component>
-            <Component class="javax.swing.JTextField" name="tfdCep">
-            </Component>
-            <Component class="javax.swing.JComboBox" name="cbxMunicipio">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Endere&#xe7;o Residencial"/>
+                  </Border>
                 </Property>
               </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="lblBairroResidencial" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblLogradouroResidencial" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="tfdLogradouroResidencial" min="-2" pref="300" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                                          <Component id="lblNumero" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="tfdNumeroResidencial" min="-2" pref="80" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="tfdBairroResidencial" min="-2" pref="235" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lblComplementoResidencial" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="lblCepResidencial" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="tfdCepResidencial" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="tfdComplementoResidencial" min="-2" pref="121" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="lblMunicipioResidencial" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="cbxMunicipioResidencial" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="231" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblLogradouroResidencial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfdLogradouroResidencial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfdNumeroResidencial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblBairroResidencial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfdBairroResidencial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblComplementoResidencial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfdComplementoResidencial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblMunicipioResidencial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbxMunicipioResidencial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCepResidencial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfdCepResidencial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="36" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="lblLogradouroResidencial">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Logradouro"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cbxMunicipioResidencial">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfdLogradouroResidencial">
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblNumero">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="N&#xfa;mero"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblBairroResidencial">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Bairro"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblMunicipioResidencial">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Munic&#xed;pio"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblComplementoResidencial">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Complemento"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblCepResidencial">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="CEP"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfdNumeroResidencial">
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfdBairroResidencial">
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfdComplementoResidencial">
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfdCepResidencial">
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="panelEndComercial">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Endere&#xe7;o Comercial"/>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lblMunicipioComercial" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblBairroComercial" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblLogradouroComercial" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="tfdLogradouroComercial" min="-2" pref="300" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                  <Component id="lblNumeroComercial" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="tfdNumeroComercial" min="-2" pref="80" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="tfdBairroComercial" min="-2" pref="230" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="lblComplementoComercial" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="tfdComplementoComercial" min="-2" pref="121" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="cbxMunicipioComercial" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                  <Component id="lblCepComercial" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="tfdCepComercial" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="76" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblLogradouroComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfdLogradouroComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNumeroComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfdNumeroComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblBairroComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfdBairroComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblComplementoComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfdComplementoComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblMunicipioComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbxMunicipioComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCepComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfdCepComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="35" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="lblLogradouroComercial">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Logradouro"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblBairroComercial">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Bairro"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblMunicipioComercial">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Munic&#xed;pio"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfdLogradouroComercial">
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfdBairroComercial">
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cbxMunicipioComercial">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblNumeroComercial">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="N&#xfa;mero"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfdNumeroComercial">
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblComplementoComercial">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Complemento"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfdComplementoComercial">
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblCepComercial">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="CEP"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfdCepComercial">
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
       </SubComponents>

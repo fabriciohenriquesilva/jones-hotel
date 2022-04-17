@@ -112,8 +112,9 @@ public class Cliente {
         return this.id == other.id;
     }
 
-    public Object getCpf() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    @Override
+    public String toString() {
+        return "Cliente{" + "id=" + id + ", nome=" + nome + ", telefoneFixo=" + telefoneFixo + ", telefoneCelular=" + telefoneCelular + ", telefoneComercial=" + telefoneComercial + '}';
     }
 
 }
