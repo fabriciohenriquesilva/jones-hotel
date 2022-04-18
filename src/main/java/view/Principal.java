@@ -24,7 +24,7 @@ public class Principal extends javax.swing.JFrame {
         menuCadastros = new javax.swing.JMenu();
         menuCadCliente = new javax.swing.JMenuItem();
         menuCadMunicipio = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menuCadVeiculo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jones Hotel");
@@ -61,13 +61,13 @@ public class Principal extends javax.swing.JFrame {
         });
         menuCadastros.add(menuCadMunicipio);
 
-        jMenuItem1.setText("Veículos");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menuCadVeiculo.setText("Veículos");
+        menuCadVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menuCadVeiculoActionPerformed(evt);
             }
         });
-        menuCadastros.add(jMenuItem1);
+        menuCadastros.add(menuCadVeiculo);
 
         menuBar.add(menuCadastros);
 
@@ -98,10 +98,10 @@ public class Principal extends javax.swing.JFrame {
         telaMunicipio.setVisible(true);
     }//GEN-LAST:event_menuCadMunicipioActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void menuCadVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadVeiculoActionPerformed
         desktop.add(telaVeiculo);
         telaVeiculo.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_menuCadVeiculoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,10 +143,10 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuCadCliente;
     private javax.swing.JMenuItem menuCadMunicipio;
+    private javax.swing.JMenuItem menuCadVeiculo;
     private javax.swing.JMenu menuCadastros;
     // End of variables declaration//GEN-END:variables
 }

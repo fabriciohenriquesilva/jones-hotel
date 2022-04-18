@@ -5,6 +5,7 @@ import dao.MunicipioDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
 import model.Endereco;
@@ -16,11 +17,15 @@ import view.TelaCliente;
 
 public class ClienteController {
 
-    private final TelaCliente telaCliente;
+    private TelaCliente telaCliente;
     private final ClienteDAO clienteDao;
 
     public ClienteController(TelaCliente telaCliente) {
         this.telaCliente = telaCliente;
+        clienteDao = new ClienteDAO();
+    }
+
+    public ClienteController() {
         clienteDao = new ClienteDAO();
     }
 
@@ -42,7 +47,14 @@ public class ClienteController {
         String numero = telaCliente.getTfdNumeroResidencial().getText();
         String bairro = telaCliente.getTfdBairroResidencial().getText();
         String nomeMunicipio = (String) telaCliente.getCbxMunicipioResidencial().getSelectedItem();
-        Municipio municipio = new MunicipioDAO().consultar(nomeMunicipio);
+
+        Municipio municipio = null;
+        try {
+            municipio = new MunicipioDAO().consultar(nomeMunicipio);
+        } catch (NullPointerException nullPointerException) {
+            MensagemUtil.addAviso(telaCliente, "Não existe um município cadastrado para o cliente!");
+        }
+
         String complemento = telaCliente.getTfdComplementoResidencial().getText();
         String cep = telaCliente.getTfdCepResidencial().getText();
 
@@ -52,7 +64,13 @@ public class ClienteController {
         String numeroComercial = telaCliente.getTfdNumeroComercial().getText();
         String bairroComercial = telaCliente.getTfdBairroComercial().getText();
         String nomeMunicipioComercial = (String) telaCliente.getCbxMunicipioComercial().getSelectedItem();
-        Municipio municipioComercial = new MunicipioDAO().consultar(nomeMunicipioComercial);
+
+        Municipio municipioComercial = null;
+        try {
+            municipioComercial = new MunicipioDAO().consultar(nomeMunicipioComercial);
+        } catch (NullPointerException nullPointerException) {
+            MensagemUtil.addAviso(telaCliente, "Não existe um município cadastrado para o cliente!");
+        }
         String complementoComercial = telaCliente.getTfdComplementoComercial().getText();
         String cepComercial = telaCliente.getTfdCepComercial().getText();
 
@@ -163,6 +181,18 @@ public class ClienteController {
         }
     }
 
+    public List<Cliente> consultarPorNome(String nome) {
+
+        try {
+            List<Cliente> clientes = clienteDao.consultarPorNome(nome);
+            return clientes;
+        } catch (NullPointerException e) {
+            MensagemUtil.addAviso(telaCliente, "Não foi encontrado nenhum registro com o nome informado!");
+        }
+
+        return null;
+    }
+
     public boolean alterar(String textoId) {
 
         if (camposEmBranco()) {
@@ -186,17 +216,29 @@ public class ClienteController {
                     String numero = telaCliente.getTfdNumeroResidencial().getText();
                     String bairro = telaCliente.getTfdBairroResidencial().getText();
                     String nomeMunicipio = (String) telaCliente.getCbxMunicipioResidencial().getSelectedItem();
-                    Municipio municipio = new MunicipioDAO().consultar(nomeMunicipio);
+
+                    Municipio municipioResidencial = null;
+                    try {
+                        municipioResidencial = new MunicipioDAO().consultar(nomeMunicipio);
+                    } catch (NullPointerException nullPointerException) {
+                        MensagemUtil.addAviso(telaCliente, "Não existe um município cadastrado para o cliente!");
+                    }
                     String complemento = telaCliente.getTfdComplementoResidencial().getText();
                     String cep = telaCliente.getTfdCepResidencial().getText();
 
-                    Endereco enderecoResidencial = new Endereco(logradouro, numero, bairro, municipio, complemento, cep);
+                    Endereco enderecoResidencial = new Endereco(logradouro, numero, bairro, municipioResidencial, complemento, cep);
 
                     String logradouroComercial = telaCliente.getTfdLogradouroComercial().getText();
                     String numeroComercial = telaCliente.getTfdNumeroComercial().getText();
                     String bairroComercial = telaCliente.getTfdBairroComercial().getText();
                     String nomeMunicipioComercial = (String) telaCliente.getCbxMunicipioComercial().getSelectedItem();
-                    Municipio municipioComercial = new MunicipioDAO().consultar(nomeMunicipioComercial);
+
+                    Municipio municipioComercial = null;
+                    try {
+                        municipioComercial = new MunicipioDAO().consultar(nomeMunicipioComercial);
+                    } catch (NullPointerException nullPointerException) {
+                        MensagemUtil.addAviso(telaCliente, "Não existe um município cadastrado para o cliente!");
+                    }
                     String complementoComercial = telaCliente.getTfdComplementoComercial().getText();
                     String cepComercial = telaCliente.getTfdCepComercial().getText();
 
@@ -271,27 +313,34 @@ public class ClienteController {
         return false;
     }
 
-    public void atualizarTabela() {
-        List<Cliente> clientes = clienteDao.listarTodos();
+    public void atualizarTabela(JTable tableClientes) {
 
-        DefaultTableModel tabelaClientes = (DefaultTableModel) telaCliente.getTableClientes().getModel();
-        tabelaClientes.setRowCount(0);
+        try {
+            List<Cliente> clientes = clienteDao.listarTodos();
 
-        for (Cliente cli : clientes) {
-            if (cli instanceof PessoaFisica) {
-                tabelaClientes.addRow(new Object[]{
-                    cli.getId(),
-                    cli.getNome(),
-                    ((PessoaFisica) cli).getCpf(),
-                    "Pessoa Física"});
+            clientes.forEach(System.out::println);
+
+            DefaultTableModel tabelaClientes = (DefaultTableModel) tableClientes.getModel();
+            tabelaClientes.setRowCount(0);
+
+            for (Cliente cli : clientes) {
+                if (cli instanceof PessoaFisica) {
+                    tabelaClientes.addRow(new Object[]{
+                        cli.getId(),
+                        cli.getNome(),
+                        ((PessoaFisica) cli).getCpf(),
+                        "Pessoa Física"});
+                }
+                if (cli instanceof PessoaJuridica) {
+                    tabelaClientes.addRow(new Object[]{
+                        cli.getId(),
+                        cli.getNome(),
+                        ((PessoaJuridica) cli).getCnpj(),
+                        "Pessoa Jurídica"});
+                }
             }
-            if (cli instanceof PessoaJuridica) {
-                tabelaClientes.addRow(new Object[]{
-                    cli.getId(),
-                    cli.getNome(),
-                    ((PessoaJuridica) cli).getCnpj(),
-                    "Pessoa Jurídica"});
-            }
+        } catch (NullPointerException e) {
+            MensagemUtil.addAviso(telaCliente, "Não foi encontrado nenhum cliente cadastrado na base de dados!");
         }
     }
 

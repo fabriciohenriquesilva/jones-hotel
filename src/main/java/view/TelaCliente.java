@@ -365,16 +365,17 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                         .addComponent(tfdTelCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblTelComercial)))
                 .addGap(18, 18, 18)
-                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnExcluir)
-                    .addComponent(btnAlterar)
-                    .addComponent(btnIncluir)
-                    .addComponent(btnCancelar))
+                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancelar)
+                    .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnExcluir)
+                        .addComponent(btnAlterar)
+                        .addComponent(btnIncluir)))
                 .addGap(18, 18, 18)
                 .addComponent(lblTableClientes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Dados Cadastrais", panelCliente);
@@ -422,9 +423,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                                         .addGap(12, 12, 12)))
                                 .addGroup(panelEndResidencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tfdCepResidencial)
-                                    .addGroup(panelEndResidencialLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(tfdComplementoResidencial, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(tfdComplementoResidencial, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(panelEndResidencialLayout.createSequentialGroup()
                         .addComponent(lblMunicipioResidencial)
                         .addGap(18, 18, 18)
@@ -544,7 +543,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 .addComponent(panelEndResidencial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panelEndComercial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Endereço", panelEndereco);
@@ -557,10 +556,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85))
+            .addComponent(jTabbedPane1)
         );
 
         setBounds(0, 0, 800, 600);
@@ -568,7 +564,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
         if(clienteController.incluir()){
-            clienteController.atualizarTabela();
+            clienteController.atualizarTabela(tableClientes);
             limparCampos();
             estadoTelaInclusao(false);
             alterarEstadoBotoes(false, true, false, false);
@@ -577,13 +573,13 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         clienteController.excluir();
-        clienteController.atualizarTabela();
+        clienteController.atualizarTabela(tableClientes);
         limparCampos();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         clienteController.alterar(tfdId.getText());
-        clienteController.atualizarTabela();
+        clienteController.atualizarTabela(tableClientes);
         limparCampos();
         alterarEstadoBotoes(false, true, false, false);
         estadoTelaInclusao(false);

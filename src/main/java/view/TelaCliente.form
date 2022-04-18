@@ -41,11 +41,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jTabbedPane1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-          </Group>
+          <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -205,17 +201,19 @@
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnCancelar" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="btnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="lblTableClientes" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="125" max="-2" attributes="0"/>
-                      <EmptySpace pref="101" max="32767" attributes="0"/>
+                      <EmptySpace pref="110" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -409,7 +407,7 @@
                       <Component id="panelEndResidencial" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="panelEndComercial" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="129" max="32767" attributes="0"/>
+                      <EmptySpace pref="138" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -456,10 +454,7 @@
                                           </Group>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="tfdCepResidencial" max="32767" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="tfdComplementoResidencial" min="-2" pref="121" max="-2" attributes="0"/>
-                                              </Group>
+                                              <Component id="tfdComplementoResidencial" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>

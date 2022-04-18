@@ -2,6 +2,9 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <Properties>
+    <Property name="closable" type="boolean" value="true"/>
+    <Property name="iconifiable" type="boolean" value="true"/>
+    <Property name="maximizable" type="boolean" value="true"/>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[800, 600]"/>
     </Property>
@@ -28,116 +31,149 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panel" alignment="0" max="32767" attributes="0"/>
+          <Component id="panelVeiculo" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panel" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="panelVeiculo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="panel">
+    <Container class="javax.swing.JPanel" name="panelVeiculo">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="tfdModelo" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblCor" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblId" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblMarca" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblModelo" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblPlaca" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblVagaOcupada" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="42" pref="42" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="tfdId" max="32767" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="btnConsultar" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="tfdMarca" alignment="0" pref="250" max="32767" attributes="0"/>
-                                      <Component id="tfdPlaca" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="tfdVagaOcupada" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="cbxCor" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                          <Component id="panelCliente" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" min="-2" pref="546" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Component id="btnIncluir" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                                  <Component id="btnAlterar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-                                  <Component id="btnExcluir" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="btnAlterar" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lblId" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblMarca" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblModelo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblCor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                  <Component id="btnIncluir" min="-2" pref="95" max="-2" attributes="0"/>
+                                                  <Component id="cbxCor" min="-2" pref="160" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="tfdMarca" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="tfdId" min="-2" pref="102" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="btnConsultar" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="tfdModelo" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                                          <Component id="lblCamposObrigatorios" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="btnExcluir" max="32767" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="lblPlaca" min="-2" pref="53" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                                  <Component id="btnCancelar" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                                                  <Component id="btnNovo" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="tfdPlaca" alignment="1" min="-2" pref="145" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="lblVagaOcupada" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="tfdVagaOcupada" min="-2" pref="100" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
+                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="120" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="panelCliente" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblId" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfdId" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnConsultar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnNovo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblMarca" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfdMarca" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfdVagaOcupada" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblVagaOcupada" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblModelo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfdModelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfdPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblCor" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cbxCor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCamposObrigatorios" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfdPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblVagaOcupada" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfdVagaOcupada" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="49" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCancelar" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="170" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="135" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -181,7 +217,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblId">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ID"/>
+            <Property name="text" type="java.lang.String" value="ID do ve&#xed;culo"/>
             <Property name="horizontalTextPosition" type="int" value="2"/>
           </Properties>
         </Component>
@@ -267,9 +303,113 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lblCamposObrigatorios">
           <Properties>
             <Property name="text" type="java.lang.String" value="* Campos obrigat&#xf3;rios"/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JPanel" name="panelCliente">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="Cliente"/>
+              </Border>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblIdCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNomeCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="tfdNomeCliente" min="-2" pref="270" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                              <Component id="btnSelecionarCliente" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="tfdIdCliente" min="-2" pref="70" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
+                              <Component id="lblCpfCnpj" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="tfdCpfCnpj" min="-2" pref="160" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="47" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="lblCpfCnpj" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfdCpfCnpj" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblIdCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfdIdCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblNomeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfdNomeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSelecionarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="lblIdCliente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="ID do Cliente"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblNomeCliente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nome do Cliente"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblCpfCnpj">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="CPF/CNPJ"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfdIdCliente">
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfdNomeCliente">
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfdCpfCnpj">
+            </Component>
+            <Component class="javax.swing.JButton" name="btnSelecionarCliente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Selecionar Cliente"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelecionarClienteActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JButton" name="btnNovo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Novo"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnCancelar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
         </Component>
       </SubComponents>
