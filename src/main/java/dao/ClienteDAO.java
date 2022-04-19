@@ -32,9 +32,6 @@ public class ClienteDAO {
         List<Cliente> resultado = new ArrayList<>();
         for (Cliente cli : clientes) {
             if (cli.getNome().toLowerCase().startsWith(nome)) {
-                System.out.println(cli.getNome());
-                System.out.println(nome);
-                System.out.println(cli.getNome().toLowerCase().startsWith(nome));
                 resultado.add(cli);
             }
         }

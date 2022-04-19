@@ -11,11 +11,14 @@ import view.TelaVeiculo;
 
 public class VeiculoController {
 //    
-    private final TelaVeiculo telaVeiculo;
+
+    private TelaVeiculo telaVeiculo;
     private VeiculoDAO veiculoDao;
+    private Veiculo veiculo;
 //
-    public VeiculoController(TelaVeiculo telaVeiculo) {
-        this.telaVeiculo = telaVeiculo;
+
+    public VeiculoController() {
+//        this.telaVeiculo = telaVeiculo;
 //        this.veiculoDao = new VeiculoDAO();
     }
 //
@@ -38,33 +41,31 @@ public class VeiculoController {
 //        return veiculoDao.incluir(veiculo);
 //    }
 //
-//    public boolean consultar() {
-//        String textoId = telaVeiculo.getTfdId();
-//        if (textoId.isEmpty()) {
-//            MensagemUtil.addAviso(telaVeiculo, "Por favor, informe um ID para realizar a busca!");
-//            return false;
-//        } else {
-//            try {
-//                int id = Integer.parseInt(textoId);
-//
-//                try {
-//                    Veiculo veiculo = veiculoDao.consultar(id);
-//
-//                    telaVeiculo.setTfdId(String.valueOf(veiculo.getId()));
-//                    telaVeiculo.setTfdNome(veiculo.getNome());
-//                    telaVeiculo.setTfdEstado(veiculo.getEstado());
-//                    telaVeiculo.setTfdPais(veiculo.getPais());
-//
-//                    return true;
-//                } catch (NoSuchElementException e) {
-//                    MensagemUtil.addAviso(telaVeiculo, "Não foi encontrado nenhum registro com o ID informado!");
-//                }
-//            } catch (NumberFormatException e) {
-//                MensagemUtil.addErro(telaVeiculo, "O ID deve ser um número!");
-//            }
-//        }
-//        return false;
-//    }
+
+    public boolean consultar(String idVeiculo) {
+        try {
+            int id = Integer.parseInt(idVeiculo);
+
+            try {
+                this.veiculo = veiculoDao.consultar(id);
+
+                // E se eu quisesse utilizar essas informações para outra tela?
+                // Soluções:
+                // 1 - Passar como argumento o JInternalFrame e fazer parse (um para cada tela)
+                // 2 - Devolver os dados por meio de um Objeto
+                // 3 - Criar um atributo model no controller e recuperar os dados através dele
+                // na view
+                // 4 - 
+                return true;
+            } catch (NoSuchElementException e) {
+                MensagemUtil.addAviso(telaVeiculo, "Não foi encontrado nenhum registro com o ID informado!");
+            }
+        } catch (NumberFormatException e) {
+            MensagemUtil.addErro(telaVeiculo, "O ID deve ser um número!");
+        }
+
+        return false;
+    }
 //
 //    public boolean alterar() {
 //        String textoId = telaVeiculo.getTfdId();
@@ -142,4 +143,9 @@ public class VeiculoController {
 //        
 //        return nome.isEmpty() || estado.isEmpty() || pais.isEmpty();
 //    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
 }

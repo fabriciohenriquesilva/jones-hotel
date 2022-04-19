@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import util.MensagemUtil;
 
 public class TelaVeiculo extends javax.swing.JInternalFrame {
 
@@ -19,28 +20,45 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
         DefaultTableModel tabelaVeiculos = (DefaultTableModel) tableVeiculos.getModel();
         tabelaVeiculos.setRowCount(0);
 
-        veiculoController = new VeiculoController(this);
+        veiculoController = new VeiculoController();
+        alterarEstadoBotoes(false, false, false, false, true);
+        estadoTelaInclusao(false);
     }
 
-    private void alterarEstadoBotoes(boolean incluir, boolean consultar, boolean alterar, boolean excluir) {
+    private void alterarEstadoBotoes(boolean incluir, boolean consultar, boolean alterar, boolean excluir, boolean selCliente) {
         btnIncluir.setEnabled(incluir);
         btnConsultar.setEnabled(consultar);
         btnExcluir.setEnabled(excluir);
         btnAlterar.setEnabled(alterar);
+        btnSelecionarCliente.setEnabled(selCliente);
+        btnNovo.setEnabled(!selCliente);
+    }
+
+    private void estadoTelaConsultaCliente(boolean consulta) {
+        tfdIdCliente.setEnabled(consulta);
+        tfdNomeCliente.setEnabled(consulta);
+        tfdCpfCnpj.setEnabled(consulta);
     }
 
     private void estadoTelaInclusao(boolean inclusao) {
         tfdId.setEnabled(!inclusao);
-
         tfdMarca.setEnabled(inclusao);
         tfdModelo.setEnabled(inclusao);
         tfdPlaca.setEnabled(inclusao);
-//        tfdCor.setEnabled(inclusao);
+        cbxCor.setEnabled(inclusao);
         tfdVagaOcupada.setEnabled(inclusao);
     }
 
     private void limparCampos() {
+        tfdIdCliente.setText("");
+        tfdNomeCliente.setText("");
+        tfdCpfCnpj.setText("");
+
         tfdId.setText("");
+        tfdMarca.setText("");
+        tfdModelo.setText("");
+        tfdPlaca.setText("");
+        tfdVagaOcupada.setText("");
     }
 
     /**
@@ -80,6 +98,7 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
         tfdNomeCliente = new javax.swing.JTextField();
         tfdCpfCnpj = new javax.swing.JTextField();
         btnSelecionarCliente = new javax.swing.JButton();
+        btnConfirmarCliente = new javax.swing.JButton();
         btnNovo = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
@@ -181,6 +200,13 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
             }
         });
 
+        btnConfirmarCliente.setText("Confirmar");
+        btnConfirmarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarClienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelClienteLayout = new javax.swing.GroupLayout(panelCliente);
         panelCliente.setLayout(panelClienteLayout);
         panelClienteLayout.setHorizontalGroup(
@@ -191,41 +217,53 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
                     .addComponent(lblIdCliente)
                     .addComponent(lblNomeCliente))
                 .addGap(33, 33, 33)
-                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelClienteLayout.createSequentialGroup()
+                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelClienteLayout.createSequentialGroup()
                         .addComponent(tfdNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)
-                        .addComponent(btnSelecionarCliente))
-                    .addGroup(panelClienteLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnConfirmarCliente))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelClienteLayout.createSequentialGroup()
                         .addComponent(tfdIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(147, 147, 147)
+                        .addGap(43, 43, 43)
                         .addComponent(lblCpfCnpj)
-                        .addGap(33, 33, 33)
-                        .addComponent(tfdCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(tfdCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnSelecionarCliente)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         panelClienteLayout.setVerticalGroup(
             panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelClienteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIdCliente)
+                    .addComponent(tfdIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblCpfCnpj)
-                        .addComponent(tfdCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblIdCliente)
-                        .addComponent(tfdIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfdCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSelecionarCliente)))
                 .addGap(18, 18, 18)
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNomeCliente)
                     .addComponent(tfdNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSelecionarCliente))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnConfirmarCliente))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         btnNovo.setText("Novo");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelVeiculoLayout = new javax.swing.GroupLayout(panelVeiculo);
         panelVeiculo.setLayout(panelVeiculoLayout);
@@ -267,26 +305,25 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
                                         .addGap(132, 132, 132)
                                         .addComponent(lblCamposObrigatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(panelVeiculoLayout.createSequentialGroup()
-                                        .addGroup(panelVeiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(panelVeiculoLayout.createSequentialGroup()
-                                                .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(6, 6, 6))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVeiculoLayout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(lblPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(panelVeiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVeiculoLayout.createSequentialGroup()
-                                                .addGap(44, 44, 44)
+                                                .addGap(50, 50, 50)
                                                 .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .addGroup(panelVeiculoLayout.createSequentialGroup()
-                                                .addGap(67, 67, 67)
-                                                .addComponent(btnNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addComponent(tfdPlaca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(73, 73, 73)
+                                                .addComponent(btnNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVeiculoLayout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblVagaOcupada)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tfdVagaOcupada, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGroup(panelVeiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVeiculoLayout.createSequentialGroup()
+                                                .addComponent(lblVagaOcupada)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(tfdVagaOcupada, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVeiculoLayout.createSequentialGroup()
+                                                .addComponent(lblPlaca)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(tfdPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                         .addGap(51, 51, 51)))
                 .addGap(96, 96, 96))
         );
@@ -339,7 +376,7 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
         setBounds(0, 0, 800, 600);
@@ -347,23 +384,43 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
 //        veiculoController.consultar();
+        String idVeiculo = tfdId.getText();
+        if (idVeiculo.isEmpty()) {
+            MensagemUtil.addAviso(this, "Informe um ID para realizar a busca");
+        } else {
+            if (veiculoController.consultar(idVeiculo)) {
+
+                tfdId.setText(String.valueOf(veiculoController.getVeiculo().getId()));
+                tfdMarca.setText(veiculoController.getVeiculo().getMarca());
+                tfdModelo.setText(veiculoController.getVeiculo().getModelo());
+                tfdPlaca.setText(veiculoController.getVeiculo().getPlaca());
+                tfdVagaOcupada.setText(veiculoController.getVeiculo().getVagaOcupada());
+
+                alterarEstadoBotoes(false, false, true, true, false);
+                estadoTelaInclusao(true);
+            }
+        }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
 //        veiculoController.incluir();
 //        veiculoController.atualizarTabela();
+        alterarEstadoBotoes(false, true, false, false, false);
+        estadoTelaInclusao(true);
         limparCampos();
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
 //        veiculoController.alterar();
 //        veiculoController.atualizarTabela();
+        alterarEstadoBotoes(false, true, false, false, false);
         limparCampos();
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
 //        veiculoController.excluir();
 //        veiculoController.atualizarTabela();
+
         limparCampos();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -386,6 +443,7 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
         TelaConsultaCliente telaConsultaCliente = new TelaConsultaCliente(this);
         TelaConsultaCliente telaTeste = new TelaConsultaCliente(this);
         telaTeste.setVisible(true);
+
 //        JDesktopPane desktopPane = getDesktopPane();
 //        desktopPane.add(telaConsultaCliente);
 //        System.out.println(telaConsultaCliente);
@@ -394,9 +452,31 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
 //        this.dispose();
     }//GEN-LAST:event_btnSelecionarClienteActionPerformed
 
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        alterarEstadoBotoes(true, false, false, false, true);
+        estadoTelaInclusao(true);
+        limparCampos();
+    }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        alterarEstadoBotoes(false, false, false, false, true);
+        estadoTelaConsultaCliente(true);
+        estadoTelaInclusao(false);
+        tfdId.setEnabled(false);
+        limparCampos();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnConfirmarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarClienteActionPerformed
+        alterarEstadoBotoes(false, true, false, false, false);
+        estadoTelaConsultaCliente(false);
+        estadoTelaInclusao(false);
+//        tfdId.setEnabled(true);
+    }//GEN-LAST:event_btnConfirmarClienteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnConfirmarCliente;
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnIncluir;
@@ -427,65 +507,63 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfdVagaOcupada;
     // End of variables declaration//GEN-END:variables
 
-    public String getTfdMarca() {
-        return tfdMarca.getText();
-    }
-
-    public void setTfdMarca(String estado) {
-        this.tfdMarca.setText(estado);
-    }
-
-    public String getTfdId() {
-        return tfdId.getText();
-    }
-
-    public void setTfdId(String id) {
-        this.tfdId.setText(id);
-    }
-
-    public String getTfdModelo() {
-        return tfdModelo.getText();
-    }
-
-    public void setTfdModelo(String modelo) {
-        this.tfdModelo.setText(modelo);
-    }
-
-    public String getTfdPlaca() {
-        return tfdPlaca.getText();
-    }
-
-    public void setTfdPlaca(String placa) {
-        this.tfdPlaca.setText(placa);
-    }
-
-    public String getTfdVagaOcupada() {
-        return tfdVagaOcupada.getText();
-    }
-
-    public void setTfdVagaOcupada(String placa) {
-        this.tfdVagaOcupada.setText(placa);
-    }
-
-    public JComboBox<String> getCbxCor() {
-        return cbxCor;
-    }
-
-    public void setCbxCor(JComboBox<String> cbxCor) {
-        this.cbxCor = cbxCor;
-    }
-
-    public JTextField getTfdCpfCnpj() {
-        return tfdCpfCnpj;
-    }
-
-    public JTextField getTfdIdCliente() {
-        return tfdIdCliente;
-    }
-
-    public JTextField getTfdNomeCliente() {
-        return tfdNomeCliente;
-    }
-
-    
+//    public String getTfdMarca() {
+//        return tfdMarca.getText();
+//    }
+//
+//    public void setTfdMarca(String estado) {
+//        this.tfdMarca.setText(estado);
+//    }
+//
+//    public String getTfdId() {
+//        return tfdId.getText();
+//    }
+//
+//    public void setTfdId(String id) {
+//        this.tfdId.setText(id);
+//    }
+//
+//    public String getTfdModelo() {
+//        return tfdModelo.getText();
+//    }
+//
+//    public void setTfdModelo(String modelo) {
+//        this.tfdModelo.setText(modelo);
+//    }
+//
+//    public String getTfdPlaca() {
+//        return tfdPlaca.getText();
+//    }
+//
+//    public void setTfdPlaca(String placa) {
+//        this.tfdPlaca.setText(placa);
+//    }
+//
+//    public String getTfdVagaOcupada() {
+//        return tfdVagaOcupada.getText();
+//    }
+//
+//    public void setTfdVagaOcupada(String placa) {
+//        this.tfdVagaOcupada.setText(placa);
+//    }
+//
+//    public JComboBox<String> getCbxCor() {
+//        return cbxCor;
+//    }
+//
+//    public void setCbxCor(JComboBox<String> cbxCor) {
+//        this.cbxCor = cbxCor;
+//    }
+//
+//    public JTextField getTfdCpfCnpj() {
+//        return tfdCpfCnpj;
+//    }
+//
+//    public JTextField getTfdIdCliente() {
+//        return tfdIdCliente;
+//    }
+//
+//    public JTextField getTfdNomeCliente() {
+//        return tfdNomeCliente;
+//    }
 }

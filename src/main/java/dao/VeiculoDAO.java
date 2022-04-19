@@ -20,12 +20,12 @@ public class VeiculoDAO {
     }
     
     public Veiculo consultar(int id) throws NoSuchElementException {
-        Veiculo veiculo = veiculos.stream()
-                .filter(mncp -> id == mncp.getId())
-                .findFirst()
-                .orElseThrow();
-        
-        return veiculo;
+        for (Veiculo veiculo : veiculos) {
+            if (id == veiculo.getId()) {
+                return veiculo;
+            }
+        }
+        throw new NullPointerException();
     }
     
     public boolean excluir(Veiculo veiculo){

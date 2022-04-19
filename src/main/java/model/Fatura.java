@@ -9,7 +9,7 @@ public class Fatura {
     private Conta conta;
     private LocalDate dataLiquidacao;
     private int qtdParcelas;
-    private List<Parcela> parcelas;
+    private Parcela[] parcelas = new Parcela[3];
     private TipoPagamento tipoPagamento;
 
     public int getId() {
@@ -44,11 +44,11 @@ public class Fatura {
         this.qtdParcelas = qtdParcelas;
     }
 
-    public List<Parcela> getParcelas() {
+    public Parcela[] getParcelas() {
         return parcelas;
     }
 
-    public void setParcelas(List<Parcela> parcelas) {
+    public void setParcelas(Parcela[] parcelas) {
         this.parcelas = parcelas;
     }
 
