@@ -5,7 +5,7 @@ import java.util.List;
 
 public abstract class Cliente {
     
-    private int id;
+    private Integer id;
     private String nome;
     private Endereco enderecoResidencial;
     private Endereco enderecoComercial;

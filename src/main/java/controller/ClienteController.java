@@ -1,23 +1,21 @@
 package controller;
 
 import dao.ClienteDAO;
-import dao.MunicipioDAO;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.table.DefaultTableModel;
-import model.Cliente;
-import model.Endereco;
-import model.Municipio;
-import model.PessoaFisica;
-import model.PessoaJuridica;
+import dao.ClienteDao;
+import dao.MunicipioDao;
+import model.*;
 import util.MensagemUtil;
 import view.TelaCliente;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClienteController {
 
     private final TelaCliente telaCliente;
-    private final ClienteDAO clienteDao;
+    private final ClienteDao clienteDao;
 
     public ClienteController(TelaCliente telaCliente) {
         this.telaCliente = telaCliente;
@@ -42,7 +40,7 @@ public class ClienteController {
         String numero = telaCliente.getTfdNumeroResidencial().getText();
         String bairro = telaCliente.getTfdBairroResidencial().getText();
         String nomeMunicipio = (String) telaCliente.getCbxMunicipioResidencial().getSelectedItem();
-        Municipio municipio = new MunicipioDAO().consultar(nomeMunicipio);
+        Municipio municipio = new MunicipioDao().consultar(nomeMunicipio);
         String complemento = telaCliente.getTfdComplementoResidencial().getText();
         String cep = telaCliente.getTfdCepResidencial().getText();
 
@@ -52,7 +50,7 @@ public class ClienteController {
         String numeroComercial = telaCliente.getTfdNumeroComercial().getText();
         String bairroComercial = telaCliente.getTfdBairroComercial().getText();
         String nomeMunicipioComercial = (String) telaCliente.getCbxMunicipioComercial().getSelectedItem();
-        Municipio municipioComercial = new MunicipioDAO().consultar(nomeMunicipioComercial);
+        Municipio municipioComercial = new MunicipioDao().consultar(nomeMunicipioComercial);
         String complementoComercial = telaCliente.getTfdComplementoComercial().getText();
         String cepComercial = telaCliente.getTfdCepComercial().getText();
 
@@ -186,7 +184,7 @@ public class ClienteController {
                     String numero = telaCliente.getTfdNumeroResidencial().getText();
                     String bairro = telaCliente.getTfdBairroResidencial().getText();
                     String nomeMunicipio = (String) telaCliente.getCbxMunicipioResidencial().getSelectedItem();
-                    Municipio municipio = new MunicipioDAO().consultar(nomeMunicipio);
+                    Municipio municipio = new MunicipioDao().consultar(nomeMunicipio);
                     String complemento = telaCliente.getTfdComplementoResidencial().getText();
                     String cep = telaCliente.getTfdCepResidencial().getText();
 
@@ -196,7 +194,7 @@ public class ClienteController {
                     String numeroComercial = telaCliente.getTfdNumeroComercial().getText();
                     String bairroComercial = telaCliente.getTfdBairroComercial().getText();
                     String nomeMunicipioComercial = (String) telaCliente.getCbxMunicipioComercial().getSelectedItem();
-                    Municipio municipioComercial = new MunicipioDAO().consultar(nomeMunicipioComercial);
+                    Municipio municipioComercial = new MunicipioDao().consultar(nomeMunicipioComercial);
                     String complementoComercial = telaCliente.getTfdComplementoComercial().getText();
                     String cepComercial = telaCliente.getTfdCepComercial().getText();
 
@@ -305,7 +303,7 @@ public class ClienteController {
     }
 
     public void atualizarMunicipios() {
-        List<Municipio> municipios = new MunicipioDAO().listarTodos();
+        List<Municipio> municipios = new MunicipioDao().listarTodos();
         List<String> nomesMunicipios = new ArrayList<>();
 
         for (Municipio m : municipios) {

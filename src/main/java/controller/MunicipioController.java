@@ -1,6 +1,6 @@
 package controller;
 
-import dao.MunicipioDAO;
+import dao.MunicipioDao;
 import java.util.List;
 import java.util.NoSuchElementException;
 import javax.swing.table.DefaultTableModel;
@@ -11,11 +11,11 @@ import view.TelaMunicipio;
 public class MunicipioController {
 
     private final TelaMunicipio telaMunicipio;
-    private final MunicipioDAO municipioDao;
+    private final MunicipioDao municipioDao;
 
     public MunicipioController(TelaMunicipio telaMunicipio) {
         this.telaMunicipio = telaMunicipio;
-        this.municipioDao = new MunicipioDAO();
+        this.municipioDao = new MunicipioDao();
     }
 
     public boolean incluir() {

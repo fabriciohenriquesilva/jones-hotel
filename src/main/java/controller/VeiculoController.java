@@ -1,18 +1,12 @@
 package controller;
 
-import dao.VeiculoDAO;
-import java.awt.Color;
-import java.util.List;
-import java.util.NoSuchElementException;
-import javax.swing.table.DefaultTableModel;
-import model.Veiculo;
-import util.MensagemUtil;
+import dao.VeiculoDao;
 import view.TelaVeiculo;
 
 public class VeiculoController {
 //    
     private final TelaVeiculo telaVeiculo;
-    private VeiculoDAO veiculoDao;
+    private VeiculoDao veiculoDao;
 //
     public VeiculoController(TelaVeiculo telaVeiculo) {
         this.telaVeiculo = telaVeiculo;
