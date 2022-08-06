@@ -1,14 +1,15 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Cliente {
+public abstract class Cliente {
     
     private int id;
     private String nome;
     private Endereco enderecoResidencial;
     private Endereco enderecoComercial;
-    private List<Veiculo> veiculos;
+    private List<Veiculo> veiculos = new ArrayList<>();
     private String telefoneFixo;
     private String telefoneCelular;
     private String telefoneComercial;

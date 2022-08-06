@@ -4,9 +4,6 @@ public class PessoaJuridica extends Cliente {
     
     private String cnpj;
     private String nomeFantasia;
-
-    public PessoaJuridica() {
-    }
     
     public PessoaJuridica(String cnpj, String nome) {
         super(nome);
@@ -29,5 +26,4 @@ public class PessoaJuridica extends Cliente {
         this.nomeFantasia = nomeFantasia;
     }
 
-    
 }

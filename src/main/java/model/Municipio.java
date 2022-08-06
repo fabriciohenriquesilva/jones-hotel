@@ -2,7 +2,7 @@ package model;
 
 public class Municipio {
     
-    private int id;
+    private Integer id;
     private String nome;
     private String estado;
     private String pais;
@@ -76,5 +76,14 @@ public class Municipio {
         final Municipio other = (Municipio) obj;
         return this.id == other.id;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Municipio{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", estado='" + estado + '\'' +
+                ", pais='" + pais + '\'' +
+                '}';
+    }
 }
