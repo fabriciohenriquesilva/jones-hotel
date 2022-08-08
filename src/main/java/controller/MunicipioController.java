@@ -1,140 +1,47 @@
 package controller;
 
 import dao.MunicipioDao;
-import java.util.List;
-import java.util.NoSuchElementException;
-import javax.swing.table.DefaultTableModel;
 import model.Municipio;
-import util.MensagemUtil;
-import view.TelaMunicipio;
 
-public class MunicipioController {
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
-    private final TelaMunicipio telaMunicipio;
+public class MunicipioController implements OperacoesDoController<Municipio, Integer> {
+
     private final MunicipioDao municipioDao;
 
-    public MunicipioController(TelaMunicipio telaMunicipio) {
-        this.telaMunicipio = telaMunicipio;
+    public MunicipioController() {
         this.municipioDao = new MunicipioDao();
     }
 
-    public boolean incluir() {
-
-        if (camposEmBranco()) {
-            MensagemUtil.addAviso(telaMunicipio, "Preencha todos os campos para incluir um novo registro!");
-            return false;
-        }
-
-        String nome = telaMunicipio.getTfdNome();
-        String estado = telaMunicipio.getTfdEstado();
-        String pais = telaMunicipio.getTfdPais();
-
-        Municipio municipio = new Municipio(nome, estado, pais);
-        return municipioDao.incluir(municipio);
+    @Override
+    public Municipio incluir(Municipio municipio) {
+        municipioDao.incluir(municipio);
+        return municipio;
     }
 
-    public boolean consultar() {
-        String textoId = telaMunicipio.getTfdId();
-        if (textoId.isEmpty()) {
-            MensagemUtil.addAviso(telaMunicipio, "Por favor, informe um ID para realizar a busca!");
-            return false;
-        } else {
-            try {
-                int id = Integer.parseInt(textoId);
+    @Override
+    public Municipio consultar(Integer id) {
+        Optional<Municipio> municipio = municipioDao.consultar(id);
+        if(municipio.isEmpty()){
 
-                try {
-                    Municipio municipio = municipioDao.consultar(id);
-
-                    telaMunicipio.setTfdId(String.valueOf(municipio.getId()));
-                    telaMunicipio.setTfdNome(municipio.getNome());
-                    telaMunicipio.setTfdEstado(municipio.getEstado());
-                    telaMunicipio.setTfdPais(municipio.getPais());
-
-                    return true;
-                } catch (NoSuchElementException e) {
-                    MensagemUtil.addAviso(telaMunicipio, "Não foi encontrado nenhum registro com o ID informado!");
-                }
-            } catch (NumberFormatException e) {
-                MensagemUtil.addErro(telaMunicipio, "O ID deve ser um número!");
-            }
+            throw new NoSuchElementException("Não foi possível encontrar o elemento solicitado");
         }
-        return false;
+        return municipio.get();
     }
 
-    public boolean alterar() {
-        String textoId = telaMunicipio.getTfdId();
-        
-        if(textoId.isEmpty()){
-            MensagemUtil.addAviso(telaMunicipio, "Não existe nenhum registro selecionado para exclusão!");
-            return false;
-        }
-        
-        if (camposEmBranco()) {
-            MensagemUtil.addAviso(telaMunicipio, "Preencha todos os campos para alterar o registro!");
-            return false;
-        }
-
-        String nome = telaMunicipio.getTfdNome();
-        String estado = telaMunicipio.getTfdEstado();
-        String pais = telaMunicipio.getTfdPais();
-        
-        int id = Integer.parseInt(textoId);
-        
-        try {
-            Municipio municipio = municipioDao.consultar(id);
-
-            municipio.setNome(nome);
-            municipio.setEstado(estado);
-            municipio.setPais(pais);
-
-            return true;
-        } catch (NoSuchElementException e) {
-            MensagemUtil.addAviso(telaMunicipio, "Não foi encontrado nenhum registro com o ID informado!");
-        }
-        return false;
+    @Override
+    public Municipio atualizar(Integer id) {
+        Municipio municipio = consultar(id);
+        return municipio;
     }
 
-    public boolean excluir() {
-        
-        if (camposEmBranco()) {
-            MensagemUtil.addAviso(telaMunicipio, "Não existe nenhum registro selecionado para exclusão!");
-            return false;
+    @Override
+    public boolean remover(Integer id) {
+        Optional<Municipio> municipio = municipioDao.consultar(id);
+        if(municipio.isEmpty()){
+            throw new NoSuchElementException("Não foi possível encontrar o elemento solicitado");
         }
-        
-        String textoId = telaMunicipio.getTfdId();
-        int id = Integer.parseInt(textoId);
-        
-        try {
-            Municipio municipio = municipioDao.consultar(id);
-            return municipioDao.excluir(municipio);
-        } catch (NoSuchElementException e) {
-            MensagemUtil.addAviso(telaMunicipio, "Não foi encontrado nenhum registro com o ID informado!");
-        }
-
-        return false;
-    }
-
-    public void atualizarTabela() {
-        List<Municipio> municipios = municipioDao.listarTodos();
-
-        DefaultTableModel tabelaMunicipios = (DefaultTableModel) telaMunicipio.getTableMunicipios().getModel();
-        tabelaMunicipios.setRowCount(0);
-
-        municipios.forEach((Municipio muni) -> {
-            tabelaMunicipios.addRow(new Object[]{
-                muni.getId(),
-                muni.getNome(),
-                muni.getEstado(),
-                muni.getPais()
-            });
-        });
-    }
-
-    private boolean camposEmBranco() {
-        String nome = telaMunicipio.getTfdNome();
-        String estado = telaMunicipio.getTfdEstado();
-        String pais = telaMunicipio.getTfdPais();
-        
-        return nome.isEmpty() || estado.isEmpty() || pais.isEmpty();
+        return municipioDao.remover(municipio.get());
     }
 }

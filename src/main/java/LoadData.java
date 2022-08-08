@@ -1,3 +1,4 @@
+import controller.MunicipioController;
 import model.Cliente;
 import model.Municipio;
 import model.PessoaFisica;
@@ -6,21 +7,33 @@ public class LoadData {
 
     public void init(){
 
-        Cliente fabricio = new PessoaFisica("123456789", "Fabricio");
         Municipio unai = new Municipio("Unaí", "MG", "Brasil");
 
-//        TesteDao dao = new TesteDao();
-//        dao.incluir(unai);
-//        Optional<Municipio> consultar = dao.consultar(1);
-//
-//        System.out.println("-----------------");
-//        System.out.println(consultar.get());
-//
-//        consultar.get().setPais("BR");
-////        dao.atualizar(unai);
-//        System.out.println("-----------------");
-//        Optional<Municipio> consultarAposAlteracao = dao.consultar(1);
-//        System.out.println(consultarAposAlteracao.get());
+        MunicipioController controller = new MunicipioController();
+
+        System.out.println("INCLUSÃO");
+        controller.incluir(unai);
+        Municipio consulta = controller.consultar(1);
+        System.out.println(consulta);
+
+        System.out.println("ALTERAÇÃO");
+        Municipio altera = controller.atualizar(1);
+        altera.setPais("BR");
+        System.out.println(altera);
+
+        System.out.println("NOVA CONSULTA");
+        Municipio consultaAposEdicao = controller.consultar(1);
+        System.out.println(consultaAposEdicao);
+
+        System.out.println("REMOÇÃO");
+        controller.remover(1);
+
+        System.out.println("NOVA CONSULTA APÓS REMOÇÃO");
+        Municipio consultaAposRemocao = controller.consultar(1);
+        System.out.println(consultaAposRemocao);
+
+        System.out.println("Execução normal");
+
 
     }
 }
